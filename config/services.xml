@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!-- parameters -->
+<!--    <parameters>-->
+<!--&lt;!&ndash;        <parameter key="openai.apikey">OPENAI_APIKEY</parameter>&ndash;&gt;-->
+<!--&lt;!&ndash;        <parameter key="openai.organization">OPENAI_ORGANISATION</parameter>&ndash;&gt;-->
+<!--    </parameters>-->
+
+    <!-- services -->
+    <services>
+
+        <!-- TelegramService -->
+        <service id="Jostkleigrewe\TelegramCoreBundle\Service\TelegramService" class="Jostkleigrewe\TelegramCoreBundle\Service\TelegramService"  public="true" autowire="true">
+            <argument key="$apikey" type="string">%jostkleigrewe_telegram_core.apikey%</argument>
+        </service>
+
+    </services>
+</container>

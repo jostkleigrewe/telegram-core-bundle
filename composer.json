@@ -1,0 +1,49 @@
+{
+    "name": "jostkleigrewe/telegram-core-bundle",
+    "type": "symfony-bundle",
+    "description": "TelegramCoreBundle for the Symfony Framework",
+    "keywords": ["Jostkleigrewe", "Telegram", "Messenger", "API", "Symfony", "Bundle"],
+    "homepage": "https://projects.jostkleigrewe.com/jostkleigrewe/telegram-core-bundle/",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sven Jostkleigrewe",
+            "email": "sven@jostkleigrewe.com"
+        }
+    ],
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "require": {
+        "php": "^8.2",
+        "symfony/config": "6.3.*",
+        "symfony/framework-bundle": "6.3.*",
+        "symfony/http-client": "6.3.*",
+        "symfony/serializer": "6.3.*"
+    },
+    "require-dev": {
+        "symfony/test-pack": "dev-main"
+    },
+    "conflict": {
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": { "Jostkleigrewe\\TelegramCoreBundle\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Jostkleigrewe\\TelegramCoreBundle\\Tests\\": "tests/" }
+    },
+    "extra": {
+        "branch-alias": {
+        }
+    },
+    "scripts": {
+        "phpunit": "php vendor/bin/phpunit",
+        "phpunit-coverage": "XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html=var/coverage"
+    }
+}
