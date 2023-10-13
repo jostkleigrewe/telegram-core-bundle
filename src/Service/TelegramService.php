@@ -11,40 +11,31 @@ class TelegramService
         private readonly HttpClientInterface $httpClient
     ) {}
 
-    public function sendMessage(string $message): array
+    public function sendMessage(string $chatId, string $message): array
     {
+        $response = $this->httpClient->request(
+            'POST',
+            'https://api.telegram.org/bot'.$this->apikey.'/sendMessage', [
+            'json' => [
+                'chat_id' => $chatId,
+                'text' => $message,
+            ],
+        ]);
 
-//        $response = $this->httpClient->request(
-//            'POST',
-//            'https://api.openai.com/v1/chat/completions',
-//            [
-//                'headers' => [
-//                    'Authorization' => 'Bearer '.$this->apikey,
-//                    'Content-Type' => 'application/json',
-//                ],
-//                'json' => [
-//                    "model" => "gpt-4",
-//                    "messages" => [
-//                        [
-//                            "role"=> "user",
-//                            "content"=> $message
-//                        ]
-//                    ],
-//                    "temperature" => 0.7,
-//                    "max_tokens" => 256,
-////                    top_p=1,
-////                    frequency_penalty=0,
-////                    presence_penalty=0
-//                ],
-//            ]
-//        );
-////            dump($this->apikey);
-////            dump($response);
-////            dump($response->getContent());
-////die;
+//        $responseA = [$response];
 
         return $response->toArray();
     }
 
+    public function getUpdates(): array
+    {
+        $response = $this->httpClient->request(
+            'GET',
+            'https://api.telegram.org/bot'.$this->apikey.'/getUpdates', [
+        ]);
 
+//        $responseA = [$response];
+
+        return $response->toArray();
+    }
 }
