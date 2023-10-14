@@ -14,7 +14,6 @@
 
         <!-- TelegramService -->
         <service id="Jostkleigrewe\TelegramCoreBundle\Service\TelegramService" class="Jostkleigrewe\TelegramCoreBundle\Service\TelegramService"  public="true" autowire="true">
-            <argument key="$apikey" type="string">%jostkleigrewe_telegram_core.apikey%</argument>
         </service>
 
     </services>

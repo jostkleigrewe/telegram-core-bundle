@@ -1,2 +1,8 @@
 jostkleigrewe_telegram_core:
     apikey: '%env(resolve:TELEGRAM_APIKEY)%'
+
+framework:
+  http_client:
+    scoped_clients:
+      telegram_client:
+        base_uri: 'https://api.telegram.org/bot%env(resolve:TELEGRAM_APIKEY)%/'
