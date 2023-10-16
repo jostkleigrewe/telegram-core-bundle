@@ -1,3 +1,0 @@
-jostkleigrewe_telegram_core_bundle_controller:
-  resource: '@JostkleigreweTelegramCoreBundle/Controller/'
-  type: annotation
