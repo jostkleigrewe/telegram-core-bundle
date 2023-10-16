@@ -1,3 +1,6 @@
 jostkleigrewe_telegram_core_bundle_controller:
-  resource: '@JostkleigreweTelegramCoreBundle/Controller/'
-  type: annotation
+#  resource: '@JostkleigreweTelegramCoreBundle/Controller/'
+    resource:
+        path: ../src/Controller
+        namespace: Jostkleigrewe\TelegramCoreBundle\Controller
+    type: annotation
