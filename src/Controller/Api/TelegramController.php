@@ -2,7 +2,7 @@
 
 namespace Jostkleigrewe\TelegramCoreBundle\Controller\Api;
 
-use App\Dto\Tests\TestMappingDto;
+//use App\Dto\Tests\TestMappingDto;
 use Jostkleigrewe\TelegramCoreBundle\Service\TelegramService;
 use Jostkleigrewe\TelegramCoreBundle\Service\TelegramWebhookService;
 use OpenApi\Attributes as OA;
@@ -24,7 +24,7 @@ class TelegramController extends AbstractController
 
     }
 
-    #[Route('/api/telegram/updates', name: 'app_api_telegram_updates', methods: ['POST'])]
+    #[Route('/api/telegram/updates', name: 'telegram_core_api_telegram_updates', methods: ['POST'])]
     public function telegramAction(): JsonResponse
     {
         return $this->telegramWebhookService->getResponseForUpdates();

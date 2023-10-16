@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/backend/telegram/log/webhook')]
 class TelegramLogWebhookController extends AbstractController
 {
-    #[Route('/', name: 'app_telegram_log_webhook_index', methods: ['GET'])]
+    #[Route('/', name: 'telegram_core_Backend_telegram_log_webhook_index', methods: ['GET'])]
     public function index(TelegramLogWebhookRepository $telegramLogWebhookRepository): Response
     {
         return $this->render('backend/telegram_log_webhook/index.html.twig', [
@@ -22,7 +22,7 @@ class TelegramLogWebhookController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_telegram_log_webhook_backend_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'telegram_core_backend_telegram_log_webhook_backend_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $telegramLogWebhook = new TelegramLogWebhook();
@@ -42,7 +42,7 @@ class TelegramLogWebhookController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_telegram_log_webhook_backend_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'telegram_core_backend_telegram_log_webhook_backend_show', methods: ['GET'])]
     public function show(TelegramLogWebhook $telegramLogWebhook): Response
     {
         return $this->render('backend/telegram_log_webhook/show.html.twig', [
@@ -50,7 +50,7 @@ class TelegramLogWebhookController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_telegram_log_webhook_backend_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'telegram_core_backend_log_webhook_backend_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, TelegramLogWebhook $telegramLogWebhook, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TelegramLogWebhookType::class, $telegramLogWebhook);

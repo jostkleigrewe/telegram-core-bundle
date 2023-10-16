@@ -7,6 +7,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
@@ -26,7 +27,7 @@ class JostkleigreweTelegramCoreExtension extends Extension implements ExtensionI
      * @param  ContainerBuilder $container
      * @throws \Exception
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
 
@@ -37,9 +38,9 @@ class JostkleigreweTelegramCoreExtension extends Extension implements ExtensionI
         }
 
         $locator = new FileLocator(__DIR__ . '/../../config/');
-        $loader  = new XmlFileLoader($container, $locator);
+        $loader  = new YamlFileLoader($container, $locator);
 
-        $loader->load('services.xml');
+        $loader->load('services.yaml');
     }
 
     /**
