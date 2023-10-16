@@ -12,7 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 //#[OA\Tag(name: 'telegram')]
 //#[IsGranted('ROLE_USER')]
-class TelegramController extends AbstractController
+//class TelegramController extends AbstractController
+class TelegramController
 {
 
 
