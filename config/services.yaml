@@ -12,3 +12,9 @@ services:
     autowire: true
     tags:
       - { name: 'doctrine.repository_service' }
+
+  Jostkleigrewe\TelegramCoreBundle\Controller\Api\TelegramController:
+    arguments:
+      $telegramWebhookService: '@Jostkleigrewe\TelegramCoreBundle\Service\TelegramWebhookService'
+    tags:
+      - { name: 'controller.service_arguments' }
