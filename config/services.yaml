@@ -12,9 +12,9 @@ services:
     autowire: true
     tags: ['doctrine.repository_service']
 
-  Jostkleigrewe\TelegramCoreBundle\Controller\Api\TelegramController:
-    public: true
-    autowire: true
+#  Jostkleigrewe\TelegramCoreBundle\Controller\Api\TelegramController:
+#    public: true
+#    autowire: true
 #    arguments:
 #      $container: '@service_container'
 #    tags: ['controller.service_arguments']

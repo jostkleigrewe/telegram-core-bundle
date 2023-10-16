@@ -3,7 +3,11 @@
 #    type: annotation
 
 jostkleigrewe_telegram_core_bundle_controller:
-    resource:
-        path: ../src/Controller
-        namespace: Jostkleigrewe\TelegramCoreBundle\Controller
-    type: attribute
+#    resource:
+#        path: ../src/Controller
+#        namespace: Jostkleigrewe\TelegramCoreBundle\Controller
+#    type: attribute
+
+    path: /hello
+    controller: Jostkleigrewe\TelegramCoreBundle\Controller\HelloController::index
+    methods: GET
