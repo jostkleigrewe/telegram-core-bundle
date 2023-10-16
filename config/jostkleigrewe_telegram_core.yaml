@@ -2,6 +2,8 @@ jostkleigrewe_telegram_core:
     apikey: '%env(resolve:TELEGRAM_APIKEY)%'
 
 framework:
+
+  # https://symfony.com/doc/current/http_client.html
   http_client:
     scoped_clients:
       telegram_client:

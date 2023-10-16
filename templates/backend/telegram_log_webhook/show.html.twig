@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TelegramLogWebhook{% endblock %}
+
+{% block body %}
+    <h1>TelegramLogWebhook</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ telegram_log_webhook.id }}</td>
+            </tr>
+            <tr>
+                <th>Data</th>
+                <td>{{ telegram_log_webhook.data ? telegram_log_webhook.data|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ telegram_log_webhook.createdAt ? telegram_log_webhook.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_telegram_log_webhook_backend_index') }}">back to list</a>
+
+    <a href="{{ path('app_telegram_log_webhook_backend_edit', {'id': telegram_log_webhook.id}) }}">edit</a>
+
+    {{ include('telegram_log_webhook_backend/_delete_form.html.twig') }}
+{% endblock %}

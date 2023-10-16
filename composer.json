@@ -20,7 +20,10 @@
     },
     "require": {
         "php": "^8.2",
+        "doctrine/doctrine-bundle": "^2.10",
+        "doctrine/orm": "^2.15",
         "symfony/config": "6.3.*",
+        "symfony/form": "6.3.*",
         "symfony/framework-bundle": "6.3.*",
         "symfony/http-client": "6.3.*",
         "symfony/serializer": "6.3.*"
