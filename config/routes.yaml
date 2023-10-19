@@ -1,5 +1,5 @@
-jostkleigrewe_telegram_core_bundle_controller:
-    resource:
-        path: ../src/Controller
-        namespace: Jostkleigrewe\TelegramCoreBundle\Controller
-    type: attribute
+#jostkleigrewe_telegram_core_bundle_controller:
+#    resource:
+#        path: ../src/Controller
+#        namespace: Jostkleigrewe\TelegramCoreBundle\Controller
+#    type: attribute
