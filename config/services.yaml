@@ -6,8 +6,3 @@ services:
   Jostkleigrewe\TelegramCoreBundle\Service\TelegramWebhookService:
     public: true
     autowire: true
-
-  Jostkleigrewe\TelegramCoreBundle\Repository\TelegramLogWebhookRepository:
-    public: true
-    autowire: true
-    tags: ['doctrine.repository_service']
