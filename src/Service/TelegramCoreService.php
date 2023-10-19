@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class TelegramService
+class TelegramCoreService
 {
     public function __construct(
         private readonly HttpClientInterface $telegramClient,

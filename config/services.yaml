@@ -1,8 +1,4 @@
 services:
-  Jostkleigrewe\TelegramCoreBundle\Service\TelegramService:
-    public: true
-    autowire: true
-
-  Jostkleigrewe\TelegramCoreBundle\Service\TelegramWebhookService:
+  Jostkleigrewe\TelegramCoreBundle\Service\TelegramCoreService:
     public: true
     autowire: true
