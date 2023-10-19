@@ -1,19 +1,28 @@
 <?php
 
-namespace Jostkleigrewe\TelegramCoreBundle\Controller\Backend;
+namespace Jostkleigrewe\examples\Controller\Backend;
 
+use App\Controller\Backend\Telegram\TelegramWebhookService;
+use Doctrine\ORM\EntityManagerInterface;
 use Jostkleigrewe\TelegramCoreBundle\Entity\TelegramLogWebhook;
 use Jostkleigrewe\TelegramCoreBundle\Form\TelegramLogWebhookType;
 use Jostkleigrewe\TelegramCoreBundle\Repository\TelegramLogWebhookRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/backend/telegram/log/webhook')]
-class TelegramLogWebhookController extends AbstractController
+class TelegramLogWebhookController
 {
+
+    public function __construct(
+        private readonly  TelegramWebhookService $telegramWebhookService,
+    )
+    {
+
+    }
+
+
     #[Route('/', name: 'telegram_core_Backend_telegram_log_webhook_index', methods: ['GET'])]
     public function index(TelegramLogWebhookRepository $telegramLogWebhookRepository): Response
     {
