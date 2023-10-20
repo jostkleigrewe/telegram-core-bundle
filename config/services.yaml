@@ -1,4 +1,73 @@
+# File: config/services.yaml
+
+parameters:
+  jostkleigrewe_telegram_core.chat_command_collection.class: "Jostkleigrewe\\TelegramCoreBundle\\ChatCommand\\ChatCommandCollection"
+
 services:
+
+  # manager
+  Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager:
+    public: true
+    autowire: true
+
+  # services
   Jostkleigrewe\TelegramCoreBundle\Service\TelegramCoreService:
     public: true
     autowire: true
+
+  Jostkleigrewe\TelegramCoreBundle\Service\TelegramClientService:
+    public: true
+    autowire: true
+
+  Jostkleigrewe\TelegramCoreBundle\Service\TelegramWebhookService:
+    public: true
+    autowire: true
+
+  Jostrkleigrewe\TelegramCoreBundle\Service\TelegramCommandService:
+    public: true
+    autowire: true
+
+  Jostkleigrewe\TelegramCoreBundle\Service\TelegramMessageService:
+    public: true
+    autowire: true
+
+  Jostkleigrewe\TelegramCoreBundle\Service\ChatCommandService:
+    public: true
+    autowire: true
+
+  # Chain
+  Jostkleigrewe\TelegramCoreBundle\ChatCommand\ChatCommandChain:
+    public: true
+    autowire: true
+
+  # Collection
+  Jostkleigrewe\TelegramCoreBundle\ChatCommand\ChatCommandCollection:
+    public: true
+    autowire: true
+    arguments:
+      - !tagged_iterator telegram_core.chat_command
+
+
+
+
+
+
+  # chat-commands
+  Jostkleigrewe\TelegramCoreBundle\ChatCommand\Core\Ping:
+    public: true
+    autowire: true
+    tags:
+      - { name: telegram_core.chat_command }
+
+  Jostkleigrewe\TelegramCoreBundle\ChatCommand\Fallback\DefaultFallback:
+    public: true
+    autowire: true
+    tags: [name: 'telegram_core.chat_command']
+
+
+  # commands
+  Jostkleigrewe\TelegramCoreBundle\Command\DebugChatCommandsCommand:
+    public: true
+    autowire: true
+    tags: [name: 'console.command']
+
