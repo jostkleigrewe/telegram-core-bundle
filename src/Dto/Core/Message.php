@@ -5,18 +5,35 @@ namespace Jostkleigrewe\TelegramCoreBundle\Dto\Core;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Animation;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Audio;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Contact;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Dice;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Document;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Game;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Invoice;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Location;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\MessageEntity;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\PhotoSize;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Sticker;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Story;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\SuccessfulPayment;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Venue;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Video;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\VideoNote;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Poll;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Voice;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\ChatShared;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\ForumTopicClosed;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\ForumTopicCreated;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\ForumTopicEdited;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\ForumTopicReopened;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\GeneralForumTopicHidden;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\GeneralForumTopicUnhidden;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\ProximityAlertTriggered;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\UserShared;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\VideoChatEnded;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\VideoChatParticipantsInvited;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\VideoChatScheduled;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\VideoChatStarted;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\WebAppData;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\WriteAccessAllowed;
 use OpenApi\Annotations as OA;
 
@@ -353,16 +370,16 @@ class Message
      * Service message: the chat photo was deleted
      *
      * @var true|null $delete_chat_photo
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $delete_chat_photo = null;
 
     /**
      * Service message: the group has been created
      *
      * @var true|null $group_chat_created
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $group_chat_created = null;
 
     /**
@@ -372,8 +389,8 @@ class Message
      * to a very first message in a directly created supergroup
      *
      * @var true|null $supergroup_chat_created
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $supergroup_chat_created = null;
 
     /**
@@ -383,8 +400,8 @@ class Message
      * very first message in a channel
      *
      * @var true|null $channel_chat_created
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $channel_chat_created = null;
 
     /**
