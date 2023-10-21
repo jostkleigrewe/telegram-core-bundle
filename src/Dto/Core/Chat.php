@@ -238,4 +238,304 @@ class Chat
      * @var ChatLocation|null $location
      */
     public ?ChatLocation $location = null;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): static
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): static
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(?string $username): static
+    {
+        $this->username = $username;
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->first_name;
+    }
+
+    public function setFirstName(?string $first_name): static
+    {
+        $this->first_name = $first_name;
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->last_name;
+    }
+
+    public function setLastName(?string $last_name): static
+    {
+        $this->last_name = $last_name;
+        return $this;
+    }
+
+    public function getIsForum(): ?bool
+    {
+        return $this->is_forum;
+    }
+
+    public function setIsForum(?true $is_forum): static
+    {
+        $this->is_forum = $is_forum;
+        return $this;
+    }
+
+    public function getPhoto(): ?ChatPhoto
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?ChatPhoto $photo): static
+    {
+        $this->photo = $photo;
+        return $this;
+    }
+
+    public function getActiveUsernames(): ?array
+    {
+        return $this->active_usernames;
+    }
+
+    public function setActiveUsernames(?array $active_usernames): static
+    {
+        $this->active_usernames = $active_usernames;
+        return $this;
+    }
+
+    public function getEmojiStatusCustomEmojiId(): ?string
+    {
+        return $this->emoji_status_custom_emoji_id;
+    }
+
+    public function setEmojiStatusCustomEmojiId(?string $emoji_status_custom_emoji_id): static
+    {
+        $this->emoji_status_custom_emoji_id = $emoji_status_custom_emoji_id;
+        return $this;
+    }
+
+    public function getEmojiStatusExpirationDate(): ?int
+    {
+        return $this->emoji_status_expiration_date;
+    }
+
+    public function setEmojiStatusExpirationDate(?int $emoji_status_expiration_date): static
+    {
+        $this->emoji_status_expiration_date = $emoji_status_expiration_date;
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(?string $bio): static
+    {
+        $this->bio = $bio;
+        return $this;
+    }
+
+    public function getHasPrivateForwards(): ?bool
+    {
+        return $this->has_private_forwards;
+    }
+
+    public function setHasPrivateForwards(?true $has_private_forwards): static
+    {
+        $this->has_private_forwards = $has_private_forwards;
+        return $this;
+    }
+
+    public function getHasRestrictedVoiceAndVideoMessages(): ?bool
+    {
+        return $this->has_restricted_voice_and_video_messages;
+    }
+
+    public function setHasRestrictedVoiceAndVideoMessages(?true $has_restricted_voice_and_video_messages): static
+    {
+        $this->has_restricted_voice_and_video_messages = $has_restricted_voice_and_video_messages;
+        return $this;
+    }
+
+    public function getJoinToSendMessages(): ?bool
+    {
+        return $this->join_to_send_messages;
+    }
+
+    public function setJoinToSendMessages(?true $join_to_send_messages): static
+    {
+        $this->join_to_send_messages = $join_to_send_messages;
+        return $this;
+    }
+
+    public function getJoinByRequest(): ?bool
+    {
+        return $this->join_by_request;
+    }
+
+    public function setJoinByRequest(?true $join_by_request): static
+    {
+        $this->join_by_request = $join_by_request;
+        return $this;
+    }
+
+    public function getPinnedMessage(): ?Message
+    {
+        return $this->pinned_message;
+    }
+
+    public function setPinnedMessage(?Message $pinned_message): static
+    {
+        $this->pinned_message = $pinned_message;
+        return $this;
+    }
+
+    public function getPermissions(): ?ChatPermissions
+    {
+        return $this->permissions;
+    }
+
+    public function setPermissions(?ChatPermissions $permissions): static
+    {
+        $this->permissions = $permissions;
+        return $this;
+    }
+
+    public function getSlowModeDelay(): ?int
+    {
+        return $this->slow_mode_delay;
+    }
+
+    public function setSlowModeDelay(?int $slow_mode_delay): static
+    {
+        $this->slow_mode_delay = $slow_mode_delay;
+        return $this;
+    }
+
+    public function getMessageAutoDeleteTime(): ?int
+    {
+        return $this->message_auto_delete_time;
+    }
+
+    public function setMessageAutoDeleteTime(?int $message_auto_delete_time): static
+    {
+        $this->message_auto_delete_time = $message_auto_delete_time;
+        return $this;
+    }
+
+    public function getHasAggressiveAntiSpamEnabled(): ?bool
+    {
+        return $this->has_aggressive_anti_spam_enabled;
+    }
+
+    public function setHasAggressiveAntiSpamEnabled(?true $has_aggressive_anti_spam_enabled): static
+    {
+        $this->has_aggressive_anti_spam_enabled = $has_aggressive_anti_spam_enabled;
+        return $this;
+    }
+
+    public function getHasHiddenMembers(): ?bool
+    {
+        return $this->has_hidden_members;
+    }
+
+    public function setHasHiddenMembers(?true $has_hidden_members): static
+    {
+        $this->has_hidden_members = $has_hidden_members;
+        return $this;
+    }
+
+    public function getHasProtectedContent(): ?bool
+    {
+        return $this->has_protected_content;
+    }
+
+    public function setHasProtectedContent(?true $has_protected_content): static
+    {
+        $this->has_protected_content = $has_protected_content;
+        return $this;
+    }
+
+    public function getStickerSetName(): ?string
+    {
+        return $this->sticker_set_name;
+    }
+
+    public function setStickerSetName(?string $sticker_set_name): static
+    {
+        $this->sticker_set_name = $sticker_set_name;
+        return $this;
+    }
+
+    public function getCanSetStickerSet(): ?bool
+    {
+        return $this->can_set_sticker_set;
+    }
+
+    public function setCanSetStickerSet(?true $can_set_sticker_set): static
+    {
+        $this->can_set_sticker_set = $can_set_sticker_set;
+        return $this;
+    }
+
+    public function getLinkedChatId(): ?int
+    {
+        return $this->linked_chat_id;
+    }
+
+    public function setLinkedChatId(?int $linked_chat_id): static
+    {
+        $this->linked_chat_id = $linked_chat_id;
+        return $this;
+    }
+
+    public function getLocation(): ?ChatLocation
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?ChatLocation $location): static
+    {
+        $this->location = $location;
+        return $this;
+    }
+
+
+    
 }
