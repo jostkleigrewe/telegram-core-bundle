@@ -8,8 +8,11 @@ use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ChosenInlineResult;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\InlineQuery;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Poll;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\PollAnswer;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\PreCheckoutQuery;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ShippingQuery;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ChatMemberUpdated;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ChatJoinRequest;
 
 /**
  * This class is defined to encapsulate the data of a Telegram webhook request.

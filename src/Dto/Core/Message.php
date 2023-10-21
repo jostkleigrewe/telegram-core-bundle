@@ -154,11 +154,11 @@ class Message
      */
     public ?Message $reply_to_message = null;
 
-     /**
-      * Bot through which the message was sent
-      *
-      * @var User|null $via_bot
-      */
+    /**
+     * Bot through which the message was sent
+     *
+     * @var User|null $via_bot
+     */
     public ?User $via_bot = null;
 
     /**
@@ -715,7 +715,7 @@ class Message
         return $this->is_topic_message;
     }
 
-    public function setIsTopicMessage(?true $is_topic_message): Message
+    public function setIsTopicMessage(?bool $is_topic_message): Message
     {
         $this->is_topic_message = $is_topic_message;
         return $this;
@@ -809,6 +809,9 @@ class Message
         return $this;
     }
 
+    /**
+     * @return MessageEntity[]|null
+     */
     public function getEntities(): ?array
     {
         return $this->entities;
@@ -853,6 +856,9 @@ class Message
         return $this;
     }
 
+    /**
+     * @return PhotoSize[]|null
+     */
     public function getPhoto(): ?array
     {
         return $this->photo;
@@ -930,6 +936,9 @@ class Message
         return $this;
     }
 
+    /**
+     * @return MessageEntity[]|null
+     */
     public function getCaptionEntities(): ?array
     {
         return $this->caption_entities;
@@ -1018,6 +1027,9 @@ class Message
         return $this;
     }
 
+    /**
+     * @return User[]|null
+     */
     public function getNewChatMembers(): ?array
     {
         return $this->new_chat_members;
@@ -1051,6 +1063,9 @@ class Message
         return $this;
     }
 
+    /**
+     * @return PhotoSize[]|null
+     */
     public function getNewChatPhoto(): ?array
     {
         return $this->new_chat_photo;
