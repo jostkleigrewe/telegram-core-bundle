@@ -17,7 +17,12 @@ use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\VideoNote;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\ChatShared;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\UserShared;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\WriteAccessAllowed;
+use OpenApi\Attributes as OA;
 
+#[OA\Schema(
+    description: "Message DTO",
+    type: "object"
+)]
 class Message
 {
 
@@ -114,6 +119,10 @@ class Message
      *
      * @var true|null $is_topic_message
      */
+    #[OA\Property(
+        description: "True, if the message is sent to a forum topic",
+        type: "boolean"
+    )]
     public ?true $is_topic_message = null;
 
     /**
@@ -122,6 +131,10 @@ class Message
      *
      * @var true|null $is_automatic_forward
      */
+    #[OA\Property(
+        description: "True, if the message is a channel post that was automatically forwarded to the connected discussion group",
+        type: "boolean"
+    )]
     public ?true $is_automatic_forward = null;
 
     /**
@@ -151,6 +164,7 @@ class Message
      *
      * @var true|null $has_protected_content
      */
+    #[OA\Property(type: "boolean")]
     public ?true $has_protected_content = null;
 
     /**
@@ -268,6 +282,7 @@ class Message
      *
      * @var true|null $has_media_spoiler
      */
+    #[OA\Property(type: "boolean")]
     public ?true $has_media_spoiler = null;
 
     /**
@@ -347,6 +362,7 @@ class Message
      *
      * @var true|null $delete_chat_photo
      */
+    #[OA\Property(type: "boolean")]
     public ?true $delete_chat_photo = null;
 
     /**
@@ -354,6 +370,7 @@ class Message
      *
      * @var true|null $group_chat_created
      */
+    #[OA\Property(type: "boolean")]
     public ?true $group_chat_created = null;
 
     /**
@@ -364,6 +381,7 @@ class Message
      *
      * @var true|null $supergroup_chat_created
      */
+    #[OA\Property(type: "boolean")]
     public ?true $supergroup_chat_created = null;
 
     /**
@@ -374,6 +392,7 @@ class Message
      *
      * @var true|null $channel_chat_created
      */
+    #[OA\Property(type: "boolean")]
     public ?true $channel_chat_created = null;
 
     /**

@@ -3,6 +3,8 @@ declare(strict_types = 1);
 
 namespace Jostkleigrewe\TelegramCoreBundle\Dto\Core;
 
+use OpenApi\Attributes as OA;
+
 
 /**
  * Class User
@@ -65,6 +67,7 @@ class User
      *
      * @var true|null $is_premium
      */
+    #[OA\Property(type: "boolean")]
     public ?true $is_premium;
 
     /**
@@ -72,6 +75,7 @@ class User
      *
      * @var true|null $added_to_attachment_menu
      */
+    #[OA\Property(type: "boolean")]
     public ?true $added_to_attachment_menu;
 
     /**

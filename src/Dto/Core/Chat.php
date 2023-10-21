@@ -2,6 +2,8 @@
 
 namespace Jostkleigrewe\TelegramCoreBundle\Dto\Core;
 
+use OpenApi\Attributes as OA;
+
 /**
  * DTO Chat
  *
@@ -62,6 +64,7 @@ class Chat
      *
      * @var true|null $is_forum
      */
+    #[OA\Property(type: "boolean")]
     public ?true $is_forum = null;
 
     /**
@@ -109,6 +112,7 @@ class Chat
      *
      * @var true|null $has_private_forwards
      */
+    #[OA\Property(type: "boolean")]
     public ?true $has_private_forwards = null;
 
     /**
@@ -117,6 +121,7 @@ class Chat
      *
      * @var true|null $has_restricted_voice_and_video_messages
      */
+    #[OA\Property(type: "boolean")]
     public ?true $has_restricted_voice_and_video_messages = null;
 
     /**
@@ -125,6 +130,7 @@ class Chat
      *
      * @var true|null $join_to_send_messages
      */
+    #[OA\Property(type: "boolean")]
     public ?true $join_to_send_messages = null;
 
     /**
@@ -133,6 +139,7 @@ class Chat
      *
      * @var true|null $join_by_request
      */
+    #[OA\Property(type: "boolean")]
     public ?true $join_by_request = null;
 
     /**
@@ -173,6 +180,7 @@ class Chat
      *
      * @var true|null $has_aggressive_anti_spam_enabled
      */
+    #[OA\Property(type: "boolean")]
     public ?true $has_aggressive_anti_spam_enabled = null;
 
     /**
@@ -182,6 +190,7 @@ class Chat
      *
      * @var true|null $has_hidden_members
      */
+    #[OA\Property(type: "boolean")]
     public ?true $has_hidden_members = null;
 
     /**
@@ -190,11 +199,8 @@ class Chat
      *
      * @var true|null $has_protected_content
      */
+    #[OA\Property(type: "boolean")]
     public ?true $has_protected_content = null;
-
-
-
-
 
     /**
      * Optional. For supergroups, name of group sticker set.
@@ -210,6 +216,7 @@ class Chat
      *
      * @var true|null $can_set_sticker_set
      */
+    #[OA\Property(type: "boolean")]
     public ?true $can_set_sticker_set = null;
 
     /**
