@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Jostkleigrewe\TelegramCoreBundle\Dto\Webhook;
+namespace Jostkleigrewe\TelegramCoreBundle\Dto\Request;
 
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\CallbackQuery;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ChosenInlineResult;
@@ -17,7 +17,7 @@ use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ChatJoinRequest;
 /**
  * This class is defined to encapsulate the data of a Telegram webhook request.
  */
-class Update
+class UpdateRequest
 {
 
     /**
@@ -139,7 +139,7 @@ class Update
         return $this->update_id;
     }
 
-    public function setUpdateId(int $update_id): Update
+    public function setUpdateId(int $update_id): static
     {
         $this->update_id = $update_id;
         return $this;
@@ -150,7 +150,7 @@ class Update
         return $this->message;
     }
 
-    public function setMessage(?Message $message): Update
+    public function setMessage(?Message $message): static
     {
         $this->message = $message;
         return $this;
@@ -161,7 +161,7 @@ class Update
         return $this->edited_message;
     }
 
-    public function setEditedMessage(?Message $edited_message): Update
+    public function setEditedMessage(?Message $edited_message): static
     {
         $this->edited_message = $edited_message;
         return $this;
@@ -172,7 +172,7 @@ class Update
         return $this->channel_post;
     }
 
-    public function setChannelPost(?Message $channel_post): Update
+    public function setChannelPost(?Message $channel_post): static
     {
         $this->channel_post = $channel_post;
         return $this;
@@ -183,7 +183,7 @@ class Update
         return $this->edited_channel_post;
     }
 
-    public function setEditedChannelPost(?Message $edited_channel_post): Update
+    public function setEditedChannelPost(?Message $edited_channel_post): static
     {
         $this->edited_channel_post = $edited_channel_post;
         return $this;
@@ -194,7 +194,7 @@ class Update
         return $this->inline_query;
     }
 
-    public function setInlineQuery(?InlineQuery $inline_query): Update
+    public function setInlineQuery(?InlineQuery $inline_query): static
     {
         $this->inline_query = $inline_query;
         return $this;
@@ -205,7 +205,7 @@ class Update
         return $this->chosen_inline_result;
     }
 
-    public function setChosenInlineResult(?ChosenInlineResult $chosen_inline_result): Update
+    public function setChosenInlineResult(?ChosenInlineResult $chosen_inline_result): static
     {
         $this->chosen_inline_result = $chosen_inline_result;
         return $this;
@@ -216,7 +216,7 @@ class Update
         return $this->callback_query;
     }
 
-    public function setCallbackQuery(?CallbackQuery $callback_query): Update
+    public function setCallbackQuery(?CallbackQuery $callback_query): static
     {
         $this->callback_query = $callback_query;
         return $this;
@@ -227,7 +227,7 @@ class Update
         return $this->shipping_query;
     }
 
-    public function setShippingQuery(?ShippingQuery $shipping_query): Update
+    public function setShippingQuery(?ShippingQuery $shipping_query): static
     {
         $this->shipping_query = $shipping_query;
         return $this;
@@ -238,7 +238,7 @@ class Update
         return $this->pre_checkout_query;
     }
 
-    public function setPreCheckoutQuery(?PreCheckoutQuery $pre_checkout_query): Update
+    public function setPreCheckoutQuery(?PreCheckoutQuery $pre_checkout_query): static
     {
         $this->pre_checkout_query = $pre_checkout_query;
         return $this;
@@ -249,7 +249,7 @@ class Update
         return $this->poll;
     }
 
-    public function setPoll(?Poll $poll): Update
+    public function setPoll(?Poll $poll): static
     {
         $this->poll = $poll;
         return $this;
@@ -260,7 +260,7 @@ class Update
         return $this->poll_answer;
     }
 
-    public function setPollAnswer(?PollAnswer $poll_answer): Update
+    public function setPollAnswer(?PollAnswer $poll_answer): static
     {
         $this->poll_answer = $poll_answer;
         return $this;
@@ -271,7 +271,7 @@ class Update
         return $this->my_chat_member;
     }
 
-    public function setMyChatMember(?ChatMemberUpdated $my_chat_member): Update
+    public function setMyChatMember(?ChatMemberUpdated $my_chat_member): static
     {
         $this->my_chat_member = $my_chat_member;
         return $this;
@@ -282,7 +282,7 @@ class Update
         return $this->chat_member;
     }
 
-    public function setChatMember(?ChatMemberUpdated $chat_member): Update
+    public function setChatMember(?ChatMemberUpdated $chat_member): static
     {
         $this->chat_member = $chat_member;
         return $this;
@@ -293,7 +293,7 @@ class Update
         return $this->chat_join_request;
     }
 
-    public function setChatJoinRequest(?ChatJoinRequest $chat_join_request): Update
+    public function setChatJoinRequest(?ChatJoinRequest $chat_join_request): static
     {
         $this->chat_join_request = $chat_join_request;
         return $this;
