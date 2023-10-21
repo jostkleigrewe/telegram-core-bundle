@@ -14,15 +14,13 @@ use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Story;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\SuccessfulPayment;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Video;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\VideoNote;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\Poll;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\ChatShared;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\UserShared;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\ServiceMessage\WriteAccessAllowed;
-use OpenApi\Attributes as OA;
+use OpenApi\Annotations as OA;
 
-#[OA\Schema(
-    description: "Message DTO",
-    type: "object"
-)]
+
 class Message
 {
 
@@ -118,11 +116,8 @@ class Message
      * True, if the message is sent to a forum topic
      *
      * @var true|null $is_topic_message
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(
-        description: "True, if the message is sent to a forum topic",
-        type: "boolean"
-    )]
     public ?true $is_topic_message = null;
 
     /**
@@ -130,11 +125,8 @@ class Message
      * forwarded to the connected discussion group
      *
      * @var true|null $is_automatic_forward
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(
-        description: "True, if the message is a channel post that was automatically forwarded to the connected discussion group",
-        type: "boolean"
-    )]
     public ?true $is_automatic_forward = null;
 
     /**
@@ -163,8 +155,8 @@ class Message
      * True, if the message can't be forwarded
      *
      * @var true|null $has_protected_content
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $has_protected_content = null;
 
     /**
@@ -281,8 +273,8 @@ class Message
      * True, if the message media is covered by a spoiler animation
      *
      * @var true|null $has_media_spoiler
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $has_media_spoiler = null;
 
     /**

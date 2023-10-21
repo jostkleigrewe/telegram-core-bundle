@@ -2,7 +2,7 @@
 
 namespace Jostkleigrewe\TelegramCoreBundle\Dto\Core;
 
-use OpenApi\Attributes as OA;
+use OpenApi\Annotations as OA;
 
 /**
  * DTO Chat
@@ -63,8 +63,8 @@ class Chat
      * True, if the supergroup chat is a forum (has topics enabled)
      *
      * @var true|null $is_forum
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $is_forum = null;
 
     /**
@@ -111,8 +111,8 @@ class Chat
      * True, if privacy settings of the other party in the private chat allows to use tg://user?id=<user_id> links only in chats with the user. Returned only in getChat.
      *
      * @var true|null $has_private_forwards
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $has_private_forwards = null;
 
     /**
@@ -120,8 +120,8 @@ class Chat
      * and video note messages in the private chat. Returned only in getChat.
      *
      * @var true|null $has_restricted_voice_and_video_messages
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $has_restricted_voice_and_video_messages = null;
 
     /**
@@ -129,8 +129,8 @@ class Chat
      * Returned only in getChat.
      *
      * @var true|null $join_to_send_messages
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $join_to_send_messages = null;
 
     /**
@@ -138,8 +138,8 @@ class Chat
      * supergroup administrators. Returned only in getChat.
      *
      * @var true|null $join_by_request
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $join_by_request = null;
 
     /**
@@ -179,8 +179,8 @@ class Chat
      * Returned only in getChat.
      *
      * @var true|null $has_aggressive_anti_spam_enabled
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $has_aggressive_anti_spam_enabled = null;
 
     /**
@@ -189,8 +189,8 @@ class Chat
      * Returned only in getChat.
      *
      * @var true|null $has_hidden_members
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $has_hidden_members = null;
 
     /**
@@ -198,8 +198,8 @@ class Chat
      * Returned only in getChat.
      *
      * @var true|null $has_protected_content
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $has_protected_content = null;
 
     /**
@@ -215,8 +215,8 @@ class Chat
      * Returned only in getChat.
      *
      * @var true|null $can_set_sticker_set
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $can_set_sticker_set = null;
 
     /**

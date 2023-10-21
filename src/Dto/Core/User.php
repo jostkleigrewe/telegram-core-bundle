@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Jostkleigrewe\TelegramCoreBundle\Dto\Core;
 
-use OpenApi\Attributes as OA;
+use OpenApi\Annotations as OA;
 
 
 /**
@@ -66,16 +66,16 @@ class User
      * True, if this user is a Telegram Premium user
      *
      * @var true|null $is_premium
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $is_premium;
 
     /**
      * True, if this user added the bot to the attachment menu
      *
      * @var true|null $added_to_attachment_menu
+     * @OA\Property(type="boolean")
      */
-    #[OA\Property(type: "boolean")]
     public ?true $added_to_attachment_menu;
 
     /**
