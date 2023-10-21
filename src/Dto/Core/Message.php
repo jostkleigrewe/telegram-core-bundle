@@ -710,7 +710,7 @@ class Message
         return $this;
     }
 
-    public function getIsTopicMessage(): ?true
+    public function getIsTopicMessage(): ?bool
     {
         return $this->is_topic_message;
     }
@@ -721,12 +721,12 @@ class Message
         return $this;
     }
 
-    public function getIsAutomaticForward(): ?true
+    public function getIsAutomaticForward(): ?bool
     {
         return $this->is_automatic_forward;
     }
 
-    public function setIsAutomaticForward(?true $is_automatic_forward): Message
+    public function setIsAutomaticForward(?bool $is_automatic_forward): Message
     {
         $this->is_automatic_forward = $is_automatic_forward;
         return $this;
@@ -765,12 +765,12 @@ class Message
         return $this;
     }
 
-    public function getHasProtectedContent(): ?true
+    public function getHasProtectedContent(): ?bool
     {
         return $this->has_protected_content;
     }
 
-    public function setHasProtectedContent(?true $has_protected_content): Message
+    public function setHasProtectedContent(?bool $has_protected_content): Message
     {
         $this->has_protected_content = $has_protected_content;
         return $this;
@@ -941,12 +941,12 @@ class Message
         return $this;
     }
 
-    public function getHasMediaSpoiler(): ?true
+    public function getHasMediaSpoiler(): ?bool
     {
         return $this->has_media_spoiler;
     }
 
-    public function setHasMediaSpoiler(?true $has_media_spoiler): Message
+    public function setHasMediaSpoiler(?bool $has_media_spoiler): Message
     {
         $this->has_media_spoiler = $has_media_spoiler;
         return $this;
@@ -1062,45 +1062,45 @@ class Message
         return $this;
     }
 
-    public function getDeleteChatPhoto(): ?true
+    public function getDeleteChatPhoto(): ?bool
     {
         return $this->delete_chat_photo;
     }
 
-    public function setDeleteChatPhoto(?true $delete_chat_photo): Message
+    public function setDeleteChatPhoto(?bool $delete_chat_photo): Message
     {
         $this->delete_chat_photo = $delete_chat_photo;
         return $this;
     }
 
-    public function getGroupChatCreated(): ?true
+    public function getGroupChatCreated(): ?bool
     {
         return $this->group_chat_created;
     }
 
-    public function setGroupChatCreated(?true $group_chat_created): Message
+    public function setGroupChatCreated(?bool $group_chat_created): Message
     {
         $this->group_chat_created = $group_chat_created;
         return $this;
     }
 
-    public function getSupergroupChatCreated(): ?true
+    public function getSupergroupChatCreated(): ?bool
     {
         return $this->supergroup_chat_created;
     }
 
-    public function setSupergroupChatCreated(?true $supergroup_chat_created): Message
+    public function setSupergroupChatCreated(?bool $supergroup_chat_created): Message
     {
         $this->supergroup_chat_created = $supergroup_chat_created;
         return $this;
     }
 
-    public function getChannelChatCreated(): ?true
+    public function getChannelChatCreated(): ?bool
     {
         return $this->channel_chat_created;
     }
 
-    public function setChannelChatCreated(?true $channel_chat_created): Message
+    public function setChannelChatCreated(?bool $channel_chat_created): Message
     {
         $this->channel_chat_created = $channel_chat_created;
         return $this;
