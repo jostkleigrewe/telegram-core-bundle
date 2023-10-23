@@ -3,7 +3,9 @@ declare(strict_types = 1);
 
 namespace Jostkleigrewe\TelegramCoreBundle;
 
+use Jostkleigrewe\TelegramCoreBundle\ChatCommand\ChatCommandInterface;
 use Jostkleigrewe\TelegramCoreBundle\DependencyInjection\Compiler\ChatCommandPass;
+use Jostkleigrewe\TelegramCoreBundle\Service\ChatCommandService;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -31,6 +33,11 @@ class JostkleigreweTelegramCoreBundle extends AbstractBundle
     public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new ChatCommandPass());
+
+        //  add service-tags
+        $container->registerForAutoconfiguration(ChatCommandInterface::class)
+            ->addTag(ChatCommandService::SERVICE_TAG)
+        ;
         
         parent::build($container);
     }

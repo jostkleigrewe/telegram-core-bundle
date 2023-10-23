@@ -27,7 +27,7 @@ use DateTimeImmutable;
         private readonly TelegramCoreManager $manager,
         private readonly SerializerInterface $serializer,
         private readonly TelegramClientService     $telegramClientService,
-        private readonly OpenAiService       $openAiService,
+        private readonly OpenAiService              $openAiService,
 
 //        private readonly RequestStack $requestStack,
 //        private readonly EntityManagerInterface $entityManager,

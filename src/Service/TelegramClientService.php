@@ -15,7 +15,7 @@ class TelegramClientService
 
     ) {}
 
-    public function sendMessage(string $chatId, string $message): array
+    public function sendMessage(int $chatId, string $message): array
     {
 
         $response = $this->telegramClient->request(

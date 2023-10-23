@@ -5,6 +5,8 @@ namespace Jostkleigrewe\TelegramCoreBundle\Manager;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Jostkleigrewe\TelegramCoreBundle\Service\ChatCommandService;
+use Jostkleigrewe\TelegramCoreBundle\Service\TelegramClientService;
+use Jostkleigrewe\TelegramCoreBundle\Service\TelegramWebhookService;
 
 /**
  * Class TelegramCoreManager
@@ -21,6 +23,9 @@ readonly class TelegramCoreManager
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly ChatCommandService $chatCommmandService,
+        private readonly TelegramClientService $telegramClientService,
+        private readonly TelegramWebhookService $telegramWebhookService,
+        
     ) {
     }
 
@@ -34,6 +39,17 @@ readonly class TelegramCoreManager
         return $this->chatCommmandService;
     }
 
+    public function getTelegramWebhookService(): TelegramWebhookService
+    {
+        return $this->telegramWebhookService;
+    }
+
+    public function getTelegramClientService(): TelegramClientService
+    {
+        return $this->telegramClientService;
+    }
+
+    
     
     
     

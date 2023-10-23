@@ -5,6 +5,8 @@ namespace Jostkleigrewe\TelegramCoreBundle\ChatCommand;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\Update;
 use Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager;
 
@@ -17,10 +19,9 @@ use Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager;
  */
 abstract class AbstractChatCommand  implements ChatCommandInterface
 {
-
     public const VALID_CHAT_COMMANDS = [];
     public const IS_FALLBACK = false;
-
+    
     /**
      * AbstractChatCommand constructor.
      *
@@ -32,42 +33,16 @@ abstract class AbstractChatCommand  implements ChatCommandInterface
     }
 
     /**
-     * @return bool
-     * @throws AlexaCoreException
+     * {@inheritdoc}
+     * @see ChatCommandInterface::createResponse()
      */
-    abstract protected function createResponse(): bool;
+    abstract public function createResponse(UpdateRequest $updateRequest): UpdateResponse;
 
     /**
      * {@inheritdoc}
-     * @see ChatCommandInterface::execute()
+     * @see ChatCommandInterface::isValid()
      */
-    final public function execute(): void
-    {
-        $this->createResponse();
-    }
-
-    /**
-     * {@inheritdoc}
-     * @see ChatCommandInterface::isValidForRequest()
-     */
-    public function isValidForRequest(Update $request): bool
-    {
-        $chatCommandName = $request->getMessage()->getText();
-
-        return $this->isValidByName($chatCommandName);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @see ChatCommandInterface::isValidByName()
-     */
-    public function isValidByName(string $chatCommandName): bool
-    {
-        return (
-            in_array($chatCommandName, static::VALID_CHAT_COMMANDS) ||
-            $this->getShortClassName() === $chatCommandName
-        );
-    }
+    abstract public function isValid(UpdateRequest $updateRequest): bool;
 
     /**
      * {@inheritdoc}
@@ -78,7 +53,6 @@ abstract class AbstractChatCommand  implements ChatCommandInterface
         return static::IS_FALLBACK;
     }
 
-
     /**
      * @return TelegramCoreManager
      */
@@ -86,33 +60,4 @@ abstract class AbstractChatCommand  implements ChatCommandInterface
     {
         return $this->manager;
     }
-
-//    /**
-//     * @return AlexaRequest
-//     * @throws AlexaCoreException
-//     */
-//    protected function getAlexaRequest(): AlexaRequest
-//    {
-//        return $this->getManager()->getAlexaRequest();
-//    }
-//
-//    /**
-//     * @return AlexaResponse
-//     * @throws AlexaCoreException
-//     */
-//    protected function getAlexaResponse(): AlexaResponse
-//    {
-//        return $this->getManager()->getAlexaResponse();
-//    }
-
-    /**
-     * @return string
-     */
-    protected function getShortClassName(): string
-    {
-        $className = static::class;
-        $pos = strrpos($className, '\\');
-        return substr($className, $pos + 1);
-    }
-
 }

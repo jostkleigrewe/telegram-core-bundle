@@ -33,7 +33,7 @@ class ChatCommandPass implements CompilerPassInterface
 
         // find all service IDs with the app.mail_transport tag
         $taggedServices = $container->findTaggedServiceIds(ChatCommandService::SERVICE_TAG);
-
+        
         if (empty($taggedServices)) {
             return;
         }

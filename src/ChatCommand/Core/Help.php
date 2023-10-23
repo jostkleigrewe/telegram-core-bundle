@@ -8,13 +8,13 @@ use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 
 /**
- * Class Ping
+ * Class Hilfe
  *
  * @package   Jostkleigrewe\TelegramCoreBundle
  * @author    Sven Jostkleigrewe <sven@jostkleigrewe.com>
- * @copyright 2021 Sven Jostkleigrewe
+ * @copyright 2023 Sven Jostkleigrewe
  */
-class Ping extends AbstractChatCommand
+class Help extends AbstractChatCommand
 {
 
     /**
@@ -23,11 +23,11 @@ class Ping extends AbstractChatCommand
      */
     public function createResponse(UpdateRequest $updateRequest): UpdateResponse
     {
-        $text = 'Ping';
+        $text = 'Hilfetext';
 
         $this->getManager()->getTelegramClientService()->sendMessage(
             $updateRequest->getMessage()->getChat()->getId(),
-            'Pong'
+            $text
         );
 
         return new UpdateResponse(200, 'Ping abgesetzt');
@@ -35,7 +35,9 @@ class Ping extends AbstractChatCommand
 
     public function isValid(UpdateRequest $updateRequest): bool
     {
-        return $updateRequest->getMessage()->getText() === '/ping';
+        return
+            $updateRequest->getMessage()->getText() === '/help' ||
+            $updateRequest->getMessage()->getText() === '/hilfe';
     }
 
 

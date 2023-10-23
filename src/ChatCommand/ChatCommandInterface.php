@@ -3,8 +3,9 @@ declare(strict_types = 1);
 
 namespace Jostkleigrewe\TelegramCoreBundle\ChatCommand;
 
+use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
 use Jostkleigrewe\TelegramCoreBundle\Exception\TelegramCoreException;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\Update;
 
 /**
  * Interface ChatCommandInterface
@@ -17,30 +18,19 @@ interface ChatCommandInterface
 {
 
     /**
-     * @return void
-     * @throws TelegramCoreException
-     *
-     * @see    AbstractChatCommand::execute()
+     * @param UpdateRequest $updateRequest
+     * @return UpdateResponse
      */
-    public function execute(): void;
+    public function createResponse(UpdateRequest $updateRequest): UpdateResponse;
 
     /**
-     * Check, if intent-class is valid for alexa-request
+     * Check, if intent-class is valid for update-request
      *
-     * @param  Update $request
+     * @param  UpdateRequest $updateRequest
      * @return bool
-     * @see    AbstractChatCommand::isValidForRequest()
+     * @see    AbstractChatCommand::isValid()
      */
-    public function isValidForRequest(Update $request): bool;
-
-    /**
-     * Check, if command-class is valid by request-name
-     *
-     * @param  string $name
-     * @return bool
-     * @see    AbstractChatCommand::isValidByName()
-     */
-    public function isValidByName(string $name): bool;
+    public function isValid(UpdateRequest $updateRequest): bool;
 
     /**
      * Check, if command-class is fallback-command

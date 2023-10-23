@@ -6,6 +6,7 @@ namespace Jostkleigrewe\TelegramCoreBundle\Service;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 use Jostkleigrewe\TelegramCoreBundle\Exception\TelegramCoreException;
+use Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
@@ -20,7 +21,10 @@ class TelegramWebhookService
     
     public function __construct(
         private readonly SerializerInterface $serializer,
-        private readonly RequestStack $requestStack
+        private readonly RequestStack $requestStack,
+//        private readonly TelegramCoreService $telegramCoreService,
+//        private readonly TelegramCoreManager $manager,
+        private readonly ChatCommandService $chatCommandService,
     ) {
         
     }
@@ -34,38 +38,41 @@ class TelegramWebhookService
 
     public function getResponseByUpdateRequest(UpdateRequest $updateRequestDTO): JsonResponse
     {
-        try {
 
+        dump(__METHOD__);
 
-            $messageText = $updateRequestDTO->getMessage()->getText();
+//        try {
+            // get chat-command by update-request
+            $chatCommmand = $this->chatCommandService
+                ->findChatCommandByUpdateRequest($updateRequestDTO);
 
-            if ($messageText === '/start') {
-                $this->telegramService->sendMessage(
-                    $updateRequestDTO->getMessage()->getChat()->getId(),
-                    'Hallo. Ich bin der Bot von Sven'
+            if ($chatCommmand === null) {
+                throw new TelegramCoreException(
+                    'No chat-command found for update-request.'
                 );
             }
 
-            if (substr($messageText, 0, 8) === '/repeat ') {
-                $this->telegramService->sendMessage(
-                    $updateRequestDTO->getMessage()->getChat()->getId(),
-                    'Repeat: ' . substr($messageText, 8)
-                );
-            }
+        $response = $chatCommmand->createResponse($updateRequestDTO);
 
-            if ($messageText === '/ping') {
-                $this->telegramService->sendMessage(
-                    $updateRequestDTO->getMessage()->getChat()->getId(),
-                    'Pong'
-                );
-            }
+
+        dump($response);
+
+
+            die;
+
+
+
+
+
+
+
 
             if (substr($messageText, 0, 4) === '/ai ') {
 
                 $result = $this->openAiService->sendMessage(substr($messageText, 4));
                 $answer = 'Antwort von KI: ' . $result["choices"][0]["message"]["content"];
 
-                $this->telegramService->sendMessage(
+                $this->telegramCoreService->sendMessage(
                     $updateRequestDTO->getMessage()->getChat()->getId(),
                     $answer
                 );
@@ -80,7 +87,7 @@ class TelegramWebhookService
                 }
 
 
-                $this->telegramService->sendMessage(
+                $this->telegramCoreService->sendMessage(
                     $updateRequestDTO->getMessage()->getChat()->getId(),
                     $msg
                 );
@@ -97,13 +104,13 @@ class TelegramWebhookService
 //                ->getIntentService()
 //                ->executeIntent($intent)
 //            ;
-        } catch (\Throwable $e) {
+//        } catch (\Throwable $e) {
 //
 //            //  create new response by throwable
 //            $this->getAlexaCoreManager()
 //                ->getAlexaResponseService()
 //                ->updateAlexaResponseByThrowable($e);
-        }
+//        }
 //
 //        //  get response-object
 //        $alexaResponse = $this->getAlexaCoreManager()->getAlexaResponse();
@@ -124,6 +131,8 @@ class TelegramWebhookService
             ]
         );
 
+        dump(__METHOD__);
+        die;
 
         $statusCode = $responseDto->getStatusCode();
         $additionalHeaders = [];
@@ -201,6 +210,8 @@ class TelegramWebhookService
 
         return $currentRequest;
     }
-    
-    
+
+
+
+
 }
