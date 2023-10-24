@@ -16,12 +16,10 @@ use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
  */
 class Commands extends AbstractChatCommand
 {
-
     /**
      * {@inheritDoc}
-     * @see AbstractIntent::createResponse()
      */
-    public function createResponse(UpdateRequest $updateRequest): UpdateResponse
+    protected function createResponse(UpdateRequest $updateRequest): UpdateResponse
     {
         $this->getManager()->getTelegramClientService()->sendMessage(
             $updateRequest->getMessage()->getChat()->getId(),

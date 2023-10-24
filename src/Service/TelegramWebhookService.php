@@ -17,6 +17,7 @@ class TelegramWebhookService
 {
 
     const REQUEST_FORMAT = 'json';
+    const RESPONSE_FORMAT = 'json';
 
     private ?UpdateRequest $updateRequest = null;
     
@@ -70,38 +71,38 @@ class TelegramWebhookService
             // create response by chat-command
             $updateResponseDTO = $chatCommand->createResponse($updateRequestDTO);
 
-            } catch (\Throwable $e) {
-                $updateResponseDTO = new UpdateResponse(
-                    500,
-                    $e->getMessage(),
-                );
-            }
+        } catch (\Throwable $e) {
+            throw new TelegramCoreException(
+                'Error occurred while processing update-request:' . $e->getMessage(),
+                0,
+                $e
+            );
+        }
 
-
-        //  create and return json-response
-
-
+        //  populate response with request-data
         $updateResponseDTO->setUpdateRequest($updateRequestDTO);
 
-
-        $alexaResponseSerialized = $this->serializer->serialize(
-            $updateResponseDTO, 'json',
+        //  serialize response without null-values
+        $updateResponseSerialized = $this->serializer->serialize(
+            $updateResponseDTO, self::RESPONSE_FORMAT,
             [
                 AbstractObjectNormalizer::SKIP_NULL_VALUES => true
             ]
         );
-
-
         $statusCode = $updateResponseDTO->getStatusCode();
         $additionalHeaders = [];
+
         return JsonResponse::fromJsonString(
-            $alexaResponseSerialized,
+            $updateResponseSerialized,
             $statusCode,
             $additionalHeaders)->setSharedMaxAge(300);
-
     }
 
 
+    /**
+     * @return UpdateRequest
+     * @throws TelegramCoreException
+     */
     public function createUpdateRequestBySymfonyRequest(): UpdateRequest
     {
         if ($this->updateRequest === null) {
@@ -117,8 +118,8 @@ class TelegramWebhookService
      * Deserialize json-string and return a populated 
      *
      * @param string $json
-     * @return AlexaRequest
-     * @throws AlexaCoreException
+     * @return UpdateRequest
+     * @throws TelegramCoreException
      */
     public function createUpdateRequestByJsonString(string $json): UpdateRequest
     {

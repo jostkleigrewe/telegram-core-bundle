@@ -3,13 +3,11 @@ declare(strict_types = 1);
 
 namespace Jostkleigrewe\TelegramCoreBundle\ChatCommand;
 
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\Update;
 use Jostkleigrewe\TelegramCoreBundle\Exception\ChatCommandLogicException;
 use Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager;
+use Exception;
 
 /**
  * Class AbstractChatCommand
@@ -20,18 +18,18 @@ use Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager;
  */
 abstract class AbstractChatCommand  implements ChatCommandInterface
 {
-    public const VALID_CHAT_COMMANDS = [];
     public const IS_FALLBACK = false;
-    
-    /**
-     * AbstractChatCommand constructor.
-     *
-     * @param TelegramCoreManager $manager
-     */
+
     public function __construct(
         private readonly TelegramCoreManager $manager,
     ) {
     }
+
+    /**
+     * {@inheritdoc}
+     * @see ChatCommandInterface::isValid()
+     */
+    abstract public function isValid(UpdateRequest $updateRequest): bool;
 
     /**
      * @param UpdateRequest $updateRequest
@@ -49,24 +47,8 @@ abstract class AbstractChatCommand  implements ChatCommandInterface
             throw new ChatCommandLogicException('ChatCommand is not valid');
         }
 
-        try {
-            $updateResponse = $this->createResponse($updateRequest);
-        } catch (\Exception $e) {
-            $updateResponse = new UpdateResponse(
-                500,
-                'ChatCommand could not be processed',
-                $updateRequest,
-                $e);
-        }
-
-        return $updateResponse;
+        return $this->createResponse($updateRequest);
     }
-
-    /**
-     * {@inheritdoc}
-     * @see ChatCommandInterface::isValid()
-     */
-    abstract public function isValid(UpdateRequest $updateRequest): bool;
 
     /**
      * {@inheritdoc}

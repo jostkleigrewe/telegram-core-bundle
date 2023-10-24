@@ -16,12 +16,10 @@ use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
  */
 class Help extends AbstractChatCommand
 {
-
     /**
      * {@inheritDoc}
-     * @see AbstractIntent::createResponse()
      */
-    public function createResponse(UpdateRequest $updateRequest): UpdateResponse
+    protected function createResponse(UpdateRequest $updateRequest): UpdateResponse
     {
         $text = 'Hilfetext';
 

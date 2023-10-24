@@ -17,7 +17,7 @@ use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 class DefaultFallback extends AbstractFallbackChatCommand
 {
 
-    public function createResponse(UpdateRequest $updateRequest): UpdateResponse
+    protected function createResponse(UpdateRequest $updateRequest): UpdateResponse
     {
         return new UpdateResponse(200, 'Fallback');
     }
@@ -26,6 +26,4 @@ class DefaultFallback extends AbstractFallbackChatCommand
     {
         return false;
     }
-
-
 }
