@@ -69,7 +69,7 @@ class TelegramWebhookService
             }
 
             // create response by chat-command
-            $updateResponseDTO = $chatCommand->createResponse($updateRequestDTO);
+            $updateResponseDTO = $chatCommand->process($updateRequestDTO);
 
         } catch (\Throwable $e) {
             throw new TelegramCoreException(
