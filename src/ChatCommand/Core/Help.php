@@ -30,7 +30,7 @@ class Help extends AbstractChatCommand
             $text
         );
 
-        return new UpdateResponse(200, 'Ping abgesetzt');
+        return new UpdateResponse(200, 'Help message created');
     }
 
     public function isValid(UpdateRequest $updateRequest): bool

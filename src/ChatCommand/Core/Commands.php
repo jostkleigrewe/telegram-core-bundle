@@ -23,14 +23,12 @@ class Commands extends AbstractChatCommand
      */
     public function createResponse(UpdateRequest $updateRequest): UpdateResponse
     {
-        $text = 'Hilfetext';
-
         $this->getManager()->getTelegramClientService()->sendMessage(
             $updateRequest->getMessage()->getChat()->getId(),
-            $text
+            $this->getMessage()
         );
 
-        return new UpdateResponse(200, 'Ping abgesetzt', $updateRequest);
+        return new UpdateResponse(200, 'List of commands created');
     }
 
     protected function getMessage(): string
@@ -46,10 +44,6 @@ class Commands extends AbstractChatCommand
 
         return $message;
     }
-
-
-
-
 
     public function isValid(UpdateRequest $updateRequest): bool
     {

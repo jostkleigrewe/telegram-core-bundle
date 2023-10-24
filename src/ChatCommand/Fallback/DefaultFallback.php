@@ -17,19 +17,9 @@ use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 class DefaultFallback extends AbstractFallbackChatCommand
 {
 
-    /**
-     * {@inheritDoc}
-     * @see AbstractIntent::createResponse()
-     */
-    public function createResponse(UpdateRequest $updateRequest): UpdateResponse {
-
-        $text = 'Fallback ChatCommand';
-
-        dump($text);
-        throw new TelegramCoreException(
-            'Anfrage konnte nicht verarbeitet werden, kein passender ChatCommand zur weiteren Verabeitung gefunden.'
-        );
-        return new UpdateResponse();
+    public function createResponse(UpdateRequest $updateRequest): UpdateResponse
+    {
+        return new UpdateResponse(200, 'Fallback');
     }
 
     public function isValid(UpdateRequest $updateRequest): bool

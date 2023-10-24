@@ -30,7 +30,7 @@ class Ping extends AbstractChatCommand
             'Pong'
         );
 
-        return new UpdateResponse(200, 'Ping abgesetzt');
+        return new UpdateResponse(200, 'Pong');
     }
 
     public function isValid(UpdateRequest $updateRequest): bool
