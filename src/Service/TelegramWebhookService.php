@@ -48,7 +48,7 @@ class TelegramWebhookService
      */
     public function getResponseByUpdateRequest(UpdateRequest $updateRequestDTO): JsonResponse
     {
-//        try {
+        try {
 
             // get chat-command by update-request
             $chatCommand = $this->chatCommandService
@@ -67,83 +67,37 @@ class TelegramWebhookService
                 );
             }
 
+            // create response by chat-command
+            $updateResponseDTO = $chatCommand->createResponse($updateRequestDTO);
 
-        $response = $chatCommand->createResponse($updateRequestDTO);
-
-
-        dump($response);
-
-
-            die;
-
-
-
-
-
-
-
-
-
-            if ($messageText === '/commands') {
-                $msg = 'Commands: ' . PHP_EOL;
-
-                foreach ($this->manager->getChatCommmandService()->getChatCommandCollection()->yieldHandlers() as $handler) {
-                    $msg .= get_class($handler) . ' ' . PHP_EOL;
-
-                }
-
-
-                $this->telegramCoreService->sendMessage(
-                    $updateRequestDTO->getMessage()->getChat()->getId(),
-                    $msg
+            } catch (\Throwable $e) {
+                $updateResponseDTO = new UpdateResponse(
+                    500,
+                    $e->getMessage(),
                 );
             }
 
-            //
-//            $session = $this->getAlexaCoreManager()->getAlexaSession();
-//
-//            //  get intent by symfony-request
-//            $intent = $this->getAlexaCoreManager()->getIntentService()->getIntent();
-//
-//            //  execute intent
-//            $this->getAlexaCoreManager()
-//                ->getIntentService()
-//                ->executeIntent($intent)
-//            ;
-//        } catch (\Throwable $e) {
-//
-//            //  create new response by throwable
-//            $this->getAlexaCoreManager()
-//                ->getAlexaResponseService()
-//                ->updateAlexaResponseByThrowable($e);
-//        }
-//
-//        //  get response-object
-//        $alexaResponse = $this->getAlexaCoreManager()->getAlexaResponse();
-//
+
+        //  create and return json-response
 
 
-//        //  create and return json-response
-
-
-        $responseDto = new UpdateResponse();
-        $responseDto->setUpdateRequest($updateRequestDTO);
+        $updateResponseDTO->setUpdateRequest($updateRequestDTO);
 
 
         $alexaResponseSerialized = $this->serializer->serialize(
-            $responseDto, 'json',
+            $updateResponseDTO, 'json',
             [
                 AbstractObjectNormalizer::SKIP_NULL_VALUES => true
             ]
         );
 
-        dump(__METHOD__);
-        die;
 
-        $statusCode = $responseDto->getStatusCode();
+        $statusCode = $updateResponseDTO->getStatusCode();
         $additionalHeaders = [];
-        return JsonResponse::fromJsonString($alexaResponseSerialized, $statusCode, $additionalHeaders)
-            ->setSharedMaxAge(300);
+        return JsonResponse::fromJsonString(
+            $alexaResponseSerialized,
+            $statusCode,
+            $additionalHeaders)->setSharedMaxAge(300);
 
     }
 
