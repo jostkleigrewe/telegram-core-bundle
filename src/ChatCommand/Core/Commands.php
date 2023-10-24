@@ -30,8 +30,26 @@ class Commands extends AbstractChatCommand
             $text
         );
 
-        return new UpdateResponse(200, 'Ping abgesetzt');
+        return new UpdateResponse(200, 'Ping abgesetzt', $updateRequest);
     }
+
+    protected function getMessage(): string
+    {
+        $message = 'Commands:' . PHP_EOL;
+
+        foreach ($this->getManager()
+            ->getChatCommmandService()
+            ->getChatCommandCollection()
+            ->yieldHandlers() as $handler) {
+            $message .= get_class($handler) . ' ' . PHP_EOL;
+        }
+
+        return $message;
+    }
+
+
+
+
 
     public function isValid(UpdateRequest $updateRequest): bool
     {

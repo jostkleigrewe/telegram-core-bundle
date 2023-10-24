@@ -3,6 +3,7 @@
 namespace Jostkleigrewe\TelegramCoreBundle\Service;
 
 
+use Jostkleigrewe\TelegramCoreBundle\ChatCommand\Fallback\DefaultFallback;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 use Jostkleigrewe\TelegramCoreBundle\Exception\TelegramCoreException;
@@ -29,30 +30,45 @@ class TelegramWebhookService
         
     }
 
+    /**
+     * @return JsonResponse
+     * @throws TelegramCoreException
+     */
     public function getResponse(): JsonResponse
     {
-        $this->getResponseByUpdateRequest(
+        return $this->getResponseByUpdateRequest(
             $this->createUpdateRequestBySymfonyRequest()
         );
     }
 
+    /**
+     * @param UpdateRequest $updateRequestDTO
+     * @return JsonResponse
+     * @throws TelegramCoreException
+     */
     public function getResponseByUpdateRequest(UpdateRequest $updateRequestDTO): JsonResponse
     {
-
-        dump(__METHOD__);
-
 //        try {
+
             // get chat-command by update-request
-            $chatCommmand = $this->chatCommandService
+            $chatCommand = $this->chatCommandService
                 ->findChatCommandByUpdateRequest($updateRequestDTO);
 
-            if ($chatCommmand === null) {
+            // get fallback chat-command
+            if ($chatCommand === null) {
+                $chatCommand = $this->chatCommandService
+                    ->findChatCommandByClassName(DefaultFallback::class);
+            }
+
+            // chat-command missing
+            if ($chatCommand === null) {
                 throw new TelegramCoreException(
                     'No chat-command found for update-request.'
                 );
             }
 
-        $response = $chatCommmand->createResponse($updateRequestDTO);
+
+        $response = $chatCommand->createResponse($updateRequestDTO);
 
 
         dump($response);
@@ -67,16 +83,6 @@ class TelegramWebhookService
 
 
 
-            if (substr($messageText, 0, 4) === '/ai ') {
-
-                $result = $this->openAiService->sendMessage(substr($messageText, 4));
-                $answer = 'Antwort von KI: ' . $result["choices"][0]["message"]["content"];
-
-                $this->telegramCoreService->sendMessage(
-                    $updateRequestDTO->getMessage()->getChat()->getId(),
-                    $answer
-                );
-            }
 
             if ($messageText === '/commands') {
                 $msg = 'Commands: ' . PHP_EOL;

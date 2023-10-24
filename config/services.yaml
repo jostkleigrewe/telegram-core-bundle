@@ -53,17 +53,25 @@ services:
 
 
   # chat-commands
+  Jostkleigrewe\TelegramCoreBundle\ChatCommand\Core\Commands:
+    public: true
+    autowire: true
+    tags: [name: 'telegram_core.chat_command']
+
   Jostkleigrewe\TelegramCoreBundle\ChatCommand\Core\Ping:
     public: true
     autowire: true
-    tags:
-      - { name: telegram_core.chat_command }
+    tags: [name: 'telegram_core.chat_command']
+
+  Jostkleigrewe\TelegramCoreBundle\ChatCommand\Core\Help:
+    public: true
+    autowire: true
+    tags: [name: 'telegram_core.chat_command']
 
   Jostkleigrewe\TelegramCoreBundle\ChatCommand\Fallback\DefaultFallback:
     public: true
     autowire: true
     tags: [name: 'telegram_core.chat_command']
-
 
   # commands
   Jostkleigrewe\TelegramCoreBundle\Command\DebugChatCommandsCommand:

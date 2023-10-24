@@ -5,6 +5,7 @@ namespace Jostkleigrewe\TelegramCoreBundle\Service;
 use Jostkleigrewe\TelegramCoreBundle\ChatCommand\ChatCommandCollection;
 use Jostkleigrewe\TelegramCoreBundle\ChatCommand\ChatCommandInterface;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 use Jostkleigrewe\TelegramCoreBundle\Exception\TelegramCoreException;
 
 /**
@@ -52,12 +53,32 @@ class ChatCommandService
     }
 
     /**
-     * @param ChatCommandInterface $chatCommand
-     * @return void
+     * @param UpdateRequest $updateRequest
+     * @return ChatCommandInterface|null
      */
-    public function execute(ChatCommandInterface $chatCommand): void
+    public function findChatCommandByClassName(string $name): ?ChatCommandInterface
     {
-        $chatCommand->execute();
+        foreach ($this->getChatCommandCollection()->yieldHandlers() AS $chatCommand) {
+            /** @var ChatCommandInterface $chatCommand */
+            if ($chatCommand::class === $name) {
+                return $chatCommand;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param ChatCommandInterface $chatCommand
+     * @param UpdateRequest $updateRequest
+     * @return UpdateResponse
+     */
+    public function createResponse(
+        ChatCommandInterface $chatCommand,
+        UpdateRequest $updateRequest
+    ): UpdateResponse
+    {
+        return $chatCommand->createResponse($updateRequest);
     }
 
     /**
