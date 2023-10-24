@@ -5,7 +5,7 @@ namespace Jostkleigrewe\TelegramCoreBundle\Dto\Response;
 
 use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
 use Symfony\Component\Serializer\Annotation;
-
+use Throwable;
 
 class UpdateResponse
 {
@@ -26,6 +26,11 @@ class UpdateResponse
     public ?UpdateRequest $updateRequest = null;
 
     /**
+     * @var UpdateRequest|null $updateRequest
+     */
+    public ?Throwable $error = null;
+
+    /**
      * @param int $statusCode
      * @param string $message
      * @param UpdateRequest|null $updateRequest
@@ -33,7 +38,9 @@ class UpdateResponse
     public function __construct(
         int $statusCode,
         string $message,
-        ?UpdateRequest $updateRequest = null)
+        ?UpdateRequest $updateRequest = null,
+        ?Throwable $error = null
+    )
     {
         $this->statusCode = $statusCode;
         $this->message = $message;
@@ -45,7 +52,7 @@ class UpdateResponse
         return $this->statusCode;
     }
 
-    public function setStatusCode(int $statusCode): UpdateResponse
+    public function setStatusCode(int $statusCode): static
     {
         $this->statusCode = $statusCode;
         return $this;
@@ -56,7 +63,7 @@ class UpdateResponse
         return $this->message;
     }
 
-    public function setMessage(string $message): UpdateResponse
+    public function setMessage(string $message): static
     {
         $this->message = $message;
         return $this;
@@ -68,13 +75,21 @@ class UpdateResponse
         return $this->updateRequest;
     }
 
-    public function setUpdateRequest(?UpdateRequest $updateRequest): UpdateResponse
+    public function setUpdateRequest(?UpdateRequest $updateRequest): static
     {
         $this->updateRequest = $updateRequest;
         return $this;
     }
 
+    public function getError(): ?Throwable
+    {
+        return $this->error;
+    }
 
-    
-    
+    public function setError(Throwable $error): static
+    {
+        $this->error = $error;
+        return $this;
+    }
+
 }

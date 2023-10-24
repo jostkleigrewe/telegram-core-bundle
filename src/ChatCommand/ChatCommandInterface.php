@@ -5,6 +5,7 @@ namespace Jostkleigrewe\TelegramCoreBundle\ChatCommand;
 
 use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
+use Jostkleigrewe\TelegramCoreBundle\Exception\ChatCommandLogicException;
 use Jostkleigrewe\TelegramCoreBundle\Exception\TelegramCoreException;
 
 /**
@@ -18,10 +19,14 @@ interface ChatCommandInterface
 {
 
     /**
-     * @param UpdateRequest $updateRequest
+     * Execute the logic of the chat-command and return an update-response
+     *
+     * @param  UpdateRequest $updateRequest
      * @return UpdateResponse
+     * @throws ChatCommandLogicException
+     * @see    AbstractChatCommand::process()
      */
-    public function createResponse(UpdateRequest $updateRequest): UpdateResponse;
+    public function process(UpdateRequest $updateRequest): UpdateResponse;
 
     /**
      * Check, if intent-class is valid for update-request

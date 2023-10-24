@@ -171,6 +171,25 @@ class TelegramWebhookService
         return $currentRequest;
     }
 
+    private function logUpdateToDatabase(Update $updateDTO): void
+    {
+
+        //  JSON ohne null-Werte
+        $updateJSON = $this->symfonySerializer->serialize(
+            $updateDTO,
+            'json',
+            [
+                AbstractObjectNormalizer::SKIP_NULL_VALUES => true
+            ]
+        );
+
+        $telegramLogWebhook = new TelegramLogWebhook();
+        $telegramLogWebhook->setData($updateJSON);
+        $telegramLogWebhook->setCreatedAt(new \DateTimeImmutable());
+
+        $this->entityManager->persist($telegramLogWebhook);
+        $this->entityManager->flush();
+    }
 
 
 

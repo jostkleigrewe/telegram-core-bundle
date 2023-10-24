@@ -198,19 +198,6 @@ use DateTimeImmutable;
 //
 
 
-//    /**
-//     * @return Request
-//     */
-//    private function getSymfonyRequest(): Request
-//    {
-//        $currentRequest = $this->requestStack->getCurrentRequest();
-//
-//        if ($currentRequest === null) {
-//            throw new \LogicException('Current symfony-request is missing');
-//        }
-//
-//        return $currentRequest;
-//    }
 }    
     
     

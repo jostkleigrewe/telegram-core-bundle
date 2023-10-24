@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\Update;
+use Jostkleigrewe\TelegramCoreBundle\Exception\ChatCommandLogicException;
 use Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager;
 
 /**
@@ -33,10 +34,33 @@ abstract class AbstractChatCommand  implements ChatCommandInterface
     }
 
     /**
-     * {@inheritdoc}
-     * @see ChatCommandInterface::createResponse()
+     * @param UpdateRequest $updateRequest
+     * @return UpdateResponse
      */
-    abstract public function createResponse(UpdateRequest $updateRequest): UpdateResponse;
+    abstract protected function createResponse(UpdateRequest $updateRequest): UpdateResponse;
+
+    /**
+     * {@inheritdoc}
+     * @see ChatCommandInterface::process()
+     */
+    public function process(UpdateRequest $updateRequest): UpdateResponse
+    {
+        if (!$this->isValid($updateRequest)) {
+            throw new ChatCommandLogicException('ChatCommand is not valid');
+        }
+
+        try {
+            $updateResponse = $this->createResponse($updateRequest);
+        } catch (\Exception $e) {
+            $updateResponse = new UpdateResponse(
+                500,
+                'ChatCommand could not be processed',
+                $updateRequest,
+                $e);
+        }
+
+        return $updateResponse;
+    }
 
     /**
      * {@inheritdoc}
