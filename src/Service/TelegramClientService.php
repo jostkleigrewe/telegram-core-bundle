@@ -32,6 +32,39 @@ class TelegramClientService
         return $response->toArray();
     }
 
+    /**
+     * @param int $chatId
+     * @param string $message
+     * @return array
+     * @link https://core.telegram.org/bots/api#sendphoto
+     */
+    public function sendPhoto(int $chatId, string $message): array
+    {
+
+        $file = dirname(__DIR__, 5) . '/_tmp/test2.png';
+        $fileHandle = fopen($file, 'r');
+
+        $headers = [
+            'Content-Type' => 'multipart/form-data',
+        ];
+
+        $response = $this->telegramClient->request(
+            'POST',
+            'sendPhoto', [
+            'headers' => $headers,
+            'body' => [
+                'chat_id' => $chatId,
+                'photo' => $fileHandle,
+                'caption' => $message,
+            ]
+        ]);
+
+        return $response->toArray();
+    }
+
+
+
+
     public function getUpdates(): array
     {
         $response = $this->telegramClient->request(
