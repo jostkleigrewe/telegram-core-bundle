@@ -4,6 +4,8 @@ declare(strict_types = 1);
 namespace Jostkleigrewe\TelegramCoreBundle\ChatCommand\Core;
 
 use Jostkleigrewe\TelegramCoreBundle\ChatCommand\AbstractChatCommand;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Requests\SendMessage;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Requests\SendPhoto;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateRequest;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateResponse;
 
@@ -24,9 +26,12 @@ class Ping extends AbstractChatCommand
     {
         $text = 'Ping';
 
-        $this->getManager()->getTelegramClientService()->sendMessage(
-            $updateRequest->getMessage()->getChat()->getId(),
-            'Pong'
+        $telegramRequest = new SendMessage(
+            chatId: $updateRequest->getMessage()->getChat()->getId(),
+            text: 'Pong'
+        );
+        $response = $this->getManager()->getTelegramClientService()->sendRequest(
+            $telegramRequest
         );
 
         return new UpdateResponse(200, 'Pong');
@@ -36,6 +41,4 @@ class Ping extends AbstractChatCommand
     {
         return $updateRequest->getMessage()->getText() === '/ping';
     }
-
-
 }

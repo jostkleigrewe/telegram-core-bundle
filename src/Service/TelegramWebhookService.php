@@ -47,7 +47,7 @@ class TelegramWebhookService
      */
     public function getResponseByUpdateRequest(UpdateRequest $updateRequestDTO): JsonResponse
     {
-        try {
+//        try {
 
             // get chat-command by update-request
             $chatCommand = $this->chatCommandService
@@ -69,13 +69,13 @@ class TelegramWebhookService
             // create response by chat-command
             $updateResponseDTO = $chatCommand->process($updateRequestDTO);
 
-        } catch (\Throwable $e) {
-            throw new TelegramCoreException(
-                'Error occurred while processing update-request:' . $e->getMessage(),
-                0,
-                $e
-            );
-        }
+//        } catch (\Throwable $e) {
+//            throw new TelegramCoreException(
+//                'Error occurred while processing update-request: ' . $e->getMessage(),
+//                0,
+//                $e
+//            );
+//        }
 
         //  populate response with request-data
         $updateResponseDTO->setUpdateRequest($updateRequestDTO);

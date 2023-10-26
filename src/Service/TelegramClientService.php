@@ -14,7 +14,7 @@ readonly class TelegramClientService
     ) {}
 
     /**
-     * @link https://core.telegram.org/bots/api#sendmessage
+     * @link https://core.telegram.org/bots/api
      * @throws TransportExceptionInterface
      */
     public function sendRequest(
@@ -24,24 +24,6 @@ readonly class TelegramClientService
             $requestDto->getMethod(),
             $requestDto->getUrl(),
             $requestDto->getOptions());
-    }
-
-    /**
-     * @link https://core.telegram.org/bots/api#sendmessage
-     * @throws TransportExceptionInterface
-     */
-    public function sendMessage(
-        int $chatId,
-        string $text): ResponseInterface
-    {
-        return $this->telegramClient->request(
-            'POST',
-            'sendMessage', [
-            'json' => [
-                'chat_id' => $chatId,
-                'text' => $text,
-            ],
-        ]);
     }
 
     /**
@@ -71,16 +53,12 @@ readonly class TelegramClientService
         fclose($fileHandle);
 
         return $response;
-    }
-
-
-
+    }    
+    
+    
     /**
-     * @link https://core.telegram.org/bots/api#getupdates
+     * @link   https://core.telegram.org/bots/api#getupdates
      * @throws TransportExceptionInterface
-     */
-
-    /**
      * @return array
      * @throws TransportExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface

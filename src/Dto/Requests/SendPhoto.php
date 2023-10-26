@@ -4,43 +4,29 @@ namespace Jostkleigrewe\TelegramCoreBundle\Dto\Requests;
 
 class SendPhoto extends AbstractRequest
 {
-    private ?string $photoUrl = null;
 
     /**
      * @var resource|bool $fileHandle
      */
-    private resource|bool $fileHandle = false;
-    private string $caption = '';
+    private $fileHandle = false;
 
-    public function setPhotoUrl(string $photoUrl): static
+
+    public function __construct(
+        private int     $chatId,
+        private string  $photoUrl,
+        private ?string $caption = null
+    )
     {
-        $this->photoUrl = $photoUrl;
-
-        return $this;
-    }
-
-    public function getPhoto(): resource|bool
-    {
-        return $this->fileHandle;
-    }
-
-
-
-    public function setCaption(string $caption): static
-    {
-        $this->caption = $caption;
-
-        return $this;
-    }
-
-    public function getCaption(): string
-    {
-        return $this->caption;
+        parent::__construct();
     }
 
     protected function up(): void
     {
         $this->fileHandle = fopen($this->photoUrl, 'r');
+
+        if (!$this->fileHandle) {
+            throw new \RuntimeException("Failed to open file: {$this->photoUrl}");
+        }
     }
 
     protected function down(): void
@@ -58,9 +44,9 @@ class SendPhoto extends AbstractRequest
     protected function getBody(): ?array
     {
         return [
-            'chat_id' => $this->getChatId(),
-            'photo' => $this->getPhoto(),
-            'caption' => $this->getCaption(),
+            'chat_id' => $this->chatId,
+            'caption' => $this->caption,
+            'photo' => $this->fileHandle,
         ];
     }
 

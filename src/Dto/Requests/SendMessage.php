@@ -5,34 +5,29 @@ namespace Jostkleigrewe\TelegramCoreBundle\Dto\Requests;
 
 /**
  * @link https://core.telegram.org/bots/api#sendmessage
+ * 
+ * Example:
  */
 class SendMessage extends AbstractRequest
 {
-
-    private string $text;
-
-    public function setText(string $text): static
+    public function __construct(
+        private int    $chatId,
+        private string $text,
+    )
     {
-        $this->text = $text;
-
-        return $this;
+        parent::__construct();
     }
 
-    public function getUrl() : string{
+    public function getUrl() : string
+    {
         return 'sendMessage';
     }
 
     protected function getJson() : ?array
     {
         return [
-            'chat_id' => $this->getChatId(),
+            'chat_id' => $this->chatId,
             'text' => $this->text,
         ];
     }
-
-    protected function getHeaders() : ?array
-    {
-        return NULL;
-    }
-
 }
