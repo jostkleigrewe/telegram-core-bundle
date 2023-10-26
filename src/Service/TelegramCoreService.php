@@ -2,21 +2,13 @@
 
 namespace Jostkleigrewe\TelegramCoreBundle\Service;
 
-use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Telegram\TelegramLogWebhook;
 use App\Form\Telegram\TelegramLogWebhookType;
 use App\Repository\Telegram\TelegramLogWebhookRepository;
 use Jostkleigrewe\OpenAiCoreBundle\Service\OpenAiService;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 use Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-use DateTimeImmutable;
 
 /**
  * Service for Telegram-Webhook

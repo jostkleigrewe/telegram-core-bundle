@@ -4,10 +4,8 @@ namespace Jostkleigrewe\TelegramCoreBundle\Service;
 
 
 use Jostkleigrewe\TelegramCoreBundle\ChatCommand\Fallback\DefaultFallback;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateRequest;
 use Jostkleigrewe\TelegramCoreBundle\Exception\TelegramCoreException;
-use Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;

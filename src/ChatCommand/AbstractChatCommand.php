@@ -3,11 +3,10 @@ declare(strict_types = 1);
 
 namespace Jostkleigrewe\TelegramCoreBundle\ChatCommand;
 
-use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateRequest;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateResponse;
 use Jostkleigrewe\TelegramCoreBundle\Exception\ChatCommandLogicException;
 use Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager;
-use Exception;
 
 /**
  * Class AbstractChatCommand

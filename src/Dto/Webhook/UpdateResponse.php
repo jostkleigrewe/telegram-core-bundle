@@ -1,10 +1,8 @@
 <?php
 declare(strict_types = 1);
 
-namespace Jostkleigrewe\TelegramCoreBundle\Dto\Response;
+namespace Jostkleigrewe\TelegramCoreBundle\Dto\Webhook;
 
-use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
-use Symfony\Component\Serializer\Annotation;
 use Throwable;
 
 class UpdateResponse

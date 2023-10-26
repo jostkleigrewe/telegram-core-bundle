@@ -4,8 +4,8 @@ declare(strict_types = 1);
 namespace Jostkleigrewe\TelegramCoreBundle\ChatCommand\Core;
 
 use Jostkleigrewe\TelegramCoreBundle\ChatCommand\AbstractChatCommand;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateRequest;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateResponse;
 
 /**
  * Class Ping

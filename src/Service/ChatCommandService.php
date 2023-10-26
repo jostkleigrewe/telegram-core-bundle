@@ -4,9 +4,8 @@ namespace Jostkleigrewe\TelegramCoreBundle\Service;
 
 use Jostkleigrewe\TelegramCoreBundle\ChatCommand\ChatCommandCollection;
 use Jostkleigrewe\TelegramCoreBundle\ChatCommand\ChatCommandInterface;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
-use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
-use Jostkleigrewe\TelegramCoreBundle\Exception\TelegramCoreException;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateRequest;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateResponse;
 use Jostkleigrewe\TelegramCoreBundle\Exception\ChatCommandLogicException;
 
 /**
