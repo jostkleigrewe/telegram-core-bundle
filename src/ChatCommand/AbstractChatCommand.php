@@ -44,7 +44,7 @@ abstract class AbstractChatCommand  implements ChatCommandInterface
     public function process(UpdateRequest $updateRequest): UpdateResponse
     {
         if (!$this->isValid($updateRequest)) {
-            throw new ChatCommandLogicException('ChatCommand is not valid');
+            throw new ChatCommandLogicException('ChatCommand is not valid: '. static::class);
         }
 
         return $this->createResponse($updateRequest);

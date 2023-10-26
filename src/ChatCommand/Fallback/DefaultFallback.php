@@ -24,6 +24,6 @@ class DefaultFallback extends AbstractFallbackChatCommand
 
     public function isValid(UpdateRequest $updateRequest): bool
     {
-        return false;
+        return true;
     }
 }

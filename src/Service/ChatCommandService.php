@@ -7,6 +7,7 @@ use Jostkleigrewe\TelegramCoreBundle\ChatCommand\ChatCommandInterface;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Request\UpdateRequest;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Response\UpdateResponse;
 use Jostkleigrewe\TelegramCoreBundle\Exception\TelegramCoreException;
+use Jostkleigrewe\TelegramCoreBundle\Exception\ChatCommandLogicException;
 
 /**
  * Class ChatCommandService
@@ -70,15 +71,16 @@ class ChatCommandService
 
     /**
      * @param ChatCommandInterface $chatCommand
-     * @param UpdateRequest $updateRequest
+     * @param UpdateRequest        $updateRequest
      * @return UpdateResponse
+     * @throws ChatCommandLogicException
      */
-    public function createResponse(
+    public function process(
         ChatCommandInterface $chatCommand,
         UpdateRequest $updateRequest
     ): UpdateResponse
     {
-        return $chatCommand->createResponse($updateRequest);
+        return $chatCommand->process($updateRequest);
     }
 
     /**

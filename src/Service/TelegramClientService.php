@@ -2,69 +2,71 @@
 
 namespace Jostkleigrewe\TelegramCoreBundle\Service;
 
-use App\Repository\Telegram\TelegramLogWebhookRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class TelegramClientService
 {
     public function __construct(
         private readonly HttpClientInterface $telegramClient,
-        private readonly RequestStack $requestStack,
-        private readonly TelegramLogWebhookRepository $telegramLogWebhookRepository,
-
     ) {}
 
-    public function sendMessage(int $chatId, string $message): array
+    /**
+     * @link https://core.telegram.org/bots/api#sendmessage
+     * @throws TransportExceptionInterface
+     */
+    public function sendMessage(
+        int $chatId,
+        string $text): ResponseInterface
     {
-
-        $response = $this->telegramClient->request(
+        return $this->telegramClient->request(
             'POST',
             'sendMessage', [
             'json' => [
                 'chat_id' => $chatId,
-                'text' => $message,
+                'text' => $text,
             ],
         ]);
-
-//        $responseA = [$response];
-
-        return $response->toArray();
     }
 
     /**
-     * @param int $chatId
-     * @param string $message
-     * @return array
      * @link https://core.telegram.org/bots/api#sendphoto
+     * @throws TransportExceptionInterface
      */
-    public function sendPhoto(int $chatId, string $message): array
+    public function sendPhoto(
+        int $chatId,
+        string $fileName,
+        ?string $caption = null): ResponseInterface
     {
-
-        $file = dirname(__DIR__, 5) . '/_tmp/test2.png';
-        $fileHandle = fopen($file, 'r');
-
-        $headers = [
-            'Content-Type' => 'multipart/form-data',
-        ];
+        $fileHandle = fopen($fileName, 'r');
 
         $response = $this->telegramClient->request(
             'POST',
             'sendPhoto', [
-            'headers' => $headers,
+            'headers' => [
+                'Content-Type' => 'multipart/form-data',
+            ],
             'body' => [
                 'chat_id' => $chatId,
                 'photo' => $fileHandle,
-                'caption' => $message,
+                'caption' => $caption,
             ]
         ]);
 
-        return $response->toArray();
+        fclose($fileHandle);
+
+        return $response;
     }
 
 
 
-
+    /**
+     * @link https://core.telegram.org/bots/api#getupdates
+     * @throws TransportExceptionInterface
+     */
     public function getUpdates(): array
     {
         $response = $this->telegramClient->request(
@@ -72,11 +74,6 @@ class TelegramClientService
             'getUpdates', [
         ]);
 
-//        $responseA = [$response];
-
         return $response->toArray();
     }
-
-
-
 }
