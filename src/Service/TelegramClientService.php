@@ -2,17 +2,29 @@
 
 namespace Jostkleigrewe\TelegramCoreBundle\Service;
 
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Response;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Requests\RequestInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
-class TelegramClientService
+readonly class TelegramClientService
 {
     public function __construct(
         private readonly HttpClientInterface $telegramClient,
     ) {}
+
+    /**
+     * @link https://core.telegram.org/bots/api#sendmessage
+     * @throws TransportExceptionInterface
+     */
+    public function sendRequest(
+       RequestInterface $requestDto): ResponseInterface
+    {
+        return $this->telegramClient->request(
+            $requestDto->getMethod(),
+            $requestDto->getUrl(),
+            $requestDto->getOptions());
+    }
 
     /**
      * @link https://core.telegram.org/bots/api#sendmessage
@@ -66,6 +78,15 @@ class TelegramClientService
     /**
      * @link https://core.telegram.org/bots/api#getupdates
      * @throws TransportExceptionInterface
+     */
+
+    /**
+     * @return array
+     * @throws TransportExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      */
     public function getUpdates(): array
     {

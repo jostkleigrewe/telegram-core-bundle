@@ -4,19 +4,39 @@ namespace Jostkleigrewe\TelegramCoreBundle\Dto\Requests;
 
 abstract class AbstractRequest implements RequestInterface
 {
+    protected string $method;
+    private int $chatId = 0;
+
+    /**
+     * @param int $chatId
+     */
+    public function __construct(int $chatId)
+    {
+        $this->chatId = $chatId;
+    }
 
     abstract public function getUrl(): string;
 
-    abstract protected function getJson(): array;
-    abstract protected function getBody(): array;
-    abstract protected function getHeaders(): array;
+    protected function getJson(): ?array {
+        return null;
+    }
+    protected function getBody(): ?array {
+        return null;
+    }
+    protected function getHeaders(): ?array {
+        return null;
+    }
 
-    abstract protected function up(): array;
-    abstract protected function down(): array;
+    protected function up(): void {}
+    protected function down(): void {}
+
+
+
+
 
     public function getMethod(): string
     {
-        return 'POST';
+        return $this->method;
     }
 
     public function getOptions(): array
@@ -39,6 +59,11 @@ abstract class AbstractRequest implements RequestInterface
         }
 
         return $options;
+    }
+
+    protected function getChatId(): int
+    {
+        return $this->chatId;
     }
 
 
