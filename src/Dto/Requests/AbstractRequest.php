@@ -60,8 +60,6 @@ abstract class AbstractRequest implements RequestInterface
             $options['json'] = $this->getJson();
         }
 
-        dump($options);
-
         return $options;
     }
 }

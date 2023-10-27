@@ -2,6 +2,7 @@
 
 namespace Jostkleigrewe\TelegramCoreBundle\Service;
 
+use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Requests\RequestInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -20,41 +21,26 @@ readonly class TelegramClientService
     public function sendRequest(
        RequestInterface $requestDto): ResponseInterface
     {
-        return $this->telegramClient->request(
+        $response = $this->telegramClient->request(
             $requestDto->getMethod(),
             $requestDto->getUrl(),
             $requestDto->getOptions());
-    }
 
-    /**
-     * @link https://core.telegram.org/bots/api#sendphoto
-     * @throws TransportExceptionInterface
-     */
-    public function sendPhoto(
-        int $chatId,
-        string $fileName,
-        ?string $caption = null): ResponseInterface
-    {
-        $fileHandle = fopen($fileName, 'r');
 
-        $response = $this->telegramClient->request(
-            'POST',
-            'sendPhoto', [
-            'headers' => [
-                'Content-Type' => 'multipart/form-data',
-            ],
-            'body' => [
-                'chat_id' => $chatId,
-                'photo' => $fileHandle,
-                'caption' => $caption,
-            ]
-        ]);
+//        $responseMessage = unserialize(
+//            $response->getContent(), Message::class
+//        );
 
-        fclose($fileHandle);
+
+//        if (201 !== $response->getStatusCode()) {
+//            throw new Exception('Response status code is different than expected.');
+//        }
+
+//        $responseJson = $response->getContent();
+//        $responseData = json_decode($responseJson, true, 512, JSON_THROW_ON_ERROR);
 
         return $response;
-    }    
-    
+    }
     
     /**
      * @link   https://core.telegram.org/bots/api#getupdates

@@ -26,10 +26,13 @@ class Ping extends AbstractChatCommand
     {
         $text = 'Ping';
 
+        //  create telegram-request
         $telegramRequest = new SendMessage(
-            chatId: $updateRequest->getMessage()->getChat()->getId(),
-            text: 'Pong'
+            $updateRequest->getMessage()->getChat()->getId(),
+            'Pong'
         );
+
+        //  send request to telegram
         $response = $this->getManager()->getTelegramClientService()->sendRequest(
             $telegramRequest
         );

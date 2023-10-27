@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Jostkleigrewe\TelegramCoreBundle\ChatCommand\Core;
 
 use Jostkleigrewe\TelegramCoreBundle\ChatCommand\AbstractChatCommand;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Requests\SendMessage;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateRequest;
 use Jostkleigrewe\TelegramCoreBundle\Dto\Webhook\UpdateResponse;
 
@@ -21,9 +22,15 @@ class Commands extends AbstractChatCommand
      */
     protected function createResponse(UpdateRequest $updateRequest): UpdateResponse
     {
-        $this->getManager()->getTelegramClientService()->sendMessage(
+        //  create telegram-request
+        $telegramRequest = new SendMessage(
             $updateRequest->getMessage()->getChat()->getId(),
             $this->getMessage()
+        );
+
+        //  send request to telegram
+        $response = $this->getManager()->getTelegramClientService()->sendRequest(
+            $telegramRequest
         );
 
         return new UpdateResponse(200, 'List of commands created');
