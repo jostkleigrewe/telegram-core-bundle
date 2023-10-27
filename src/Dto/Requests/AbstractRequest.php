@@ -52,14 +52,23 @@ abstract class AbstractRequest implements RequestInterface
 
         //  add body
         if ($this->getBody()) {
-            $options['body'] = $this->getBody();
+            $options['body'] = $this->removeNullValuesFromArray($this->getBody());
         }
 
         //  add json
         if ($this->getJson()) {
-            $options['json'] = $this->getJson();
+            $options['json'] = $this->removeNullValuesFromArray($this->getJson());
         }
 
         return $options;
+    }
+
+
+
+    private function removeNullValuesFromArray(array $array): array
+    {
+        return array_filter($array, function ($value) {
+            return !is_null($value);
+        });
     }
 }

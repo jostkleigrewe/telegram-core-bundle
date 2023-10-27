@@ -42,7 +42,7 @@ class SendMessage extends AbstractRequest
             'text' => $this->text,
             'message_thread_id' => $this->message_thread_id,
             'parse_mode' => $this->parse_mode,
-            'entities' => json_encode($this->getEntities()),
+            'entities' => $this->getEntities(),
             'disable_web_page_preview' => $this->disable_web_page_preview,
             'disable_notification' => $this->disable_notification,
             'protect_content' => $this->protect_content,
