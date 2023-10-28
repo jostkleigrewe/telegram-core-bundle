@@ -12,9 +12,9 @@ class SendPhoto extends AbstractRequest
 
 
     public function __construct(
-        private int     $chatId,
-        private string  $photoUrl,
-        private ?string $caption = null
+        private readonly int $chatId,
+        private readonly string $photoUrl,
+        private readonly ?string $caption = null
     )
     {
         parent::__construct();

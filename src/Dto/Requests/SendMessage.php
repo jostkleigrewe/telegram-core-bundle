@@ -4,6 +4,7 @@ namespace Jostkleigrewe\TelegramCoreBundle\Dto\Requests;
 
 
 use Jostkleigrewe\TelegramCoreBundle\Dto\Core\Message\MessageEntity;
+use Jostkleigrewe\TelegramCoreBundle\Dto\Requests\ReplyMarkup\ReplyMarkupInterface;
 
 /**
  * Use this to send text messages
@@ -24,7 +25,7 @@ class SendMessage extends AbstractRequest
         private readonly ?bool $protect_content = null,
         private readonly ?int $reply_to_message_id = null,
         private readonly ?bool $allow_sending_without_reply = null,
-
+        private readonly ?ReplyMarkupInterface $reply_markup = null,
     )
     {
         parent::__construct();
@@ -48,6 +49,7 @@ class SendMessage extends AbstractRequest
             'protect_content' => $this->protect_content,
             'reply_to_message_id' => $this->reply_to_message_id,
             'allow_sending_without_reply' => $this->allow_sending_without_reply,
+            'reply_markup' => $this->getReplyMarkup(),
         ];
     }
 
@@ -70,5 +72,14 @@ class SendMessage extends AbstractRequest
         }
 
         return json_encode($this->entities);
+    }
+
+    protected function getReplyMarkup(): ?string
+    {
+        if (empty($this->reply_markup)) {
+            return null;
+        }
+
+        return json_encode($this->reply_markup);
     }
 }
