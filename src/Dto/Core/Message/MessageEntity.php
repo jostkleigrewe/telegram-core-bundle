@@ -81,4 +81,23 @@ class MessageEntity
      * @var string|null $custom_emoji_id
      */
     public ?string $custom_emoji_id = null;
+
+     public function __construct(
+        string $type,
+        int $offset,
+        int $length,
+        ?string $url = null,
+        ?User $user = null,
+        ?string $language = null,
+        ?string $custom_emoji_id = null
+    )
+    {
+        $this->type = $type;
+        $this->offset = $offset;
+        $this->length = $length;
+        $this->url = $url;
+        $this->user = $user;
+        $this->language = $language;
+        $this->custom_emoji_id = $custom_emoji_id;
+    }
 }
