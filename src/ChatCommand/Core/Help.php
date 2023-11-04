@@ -41,8 +41,8 @@ class Help extends AbstractChatCommand
     public function isValid(UpdateRequest $updateRequest): bool
     {
         return
-            $updateRequest->getMessage()->getText() === '/help' ||
-            $updateRequest->getMessage()->getText() === '/hilfe';
+            $updateRequest?->getMessage()?->getText() === '/help' ||
+            $updateRequest?->getMessage()?->getText() === '/hilfe';
     }
 
 

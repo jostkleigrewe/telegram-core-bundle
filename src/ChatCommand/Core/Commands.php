@@ -52,7 +52,7 @@ class Commands extends AbstractChatCommand
 
     public function isValid(UpdateRequest $updateRequest): bool
     {
-        return $updateRequest->getMessage()->getText() === '/commands';
+        return $updateRequest?->getMessage()?->getText() === '/commands';
     }
 
 

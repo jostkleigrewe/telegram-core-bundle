@@ -42,6 +42,6 @@ class Ping extends AbstractChatCommand
 
     public function isValid(UpdateRequest $updateRequest): bool
     {
-        return $updateRequest->getMessage()->getText() === '/ping';
+        return $updateRequest?->getMessage()?->getText() === '/ping';
     }
 }

@@ -9,10 +9,14 @@ use Jostkleigrewe\TelegramCoreBundle\Dto\Requests\ReplyMarkup\ReplyMarkupInterfa
 /**
  * Use this to send text messages
  *
+ * @link https://core.telegram.org/bots/api#formatting-options
  * @link https://core.telegram.org/bots/api#sendmessage
  */
 class SendMessage extends AbstractRequest
 {
+
+    public const PARSE_MODE_MARKDOWN2 = 'MarkdownV2';
+    public const PARSE_MODE_HTML = 'HTML';
 
     public function __construct(
         private readonly int|string $chatId,
