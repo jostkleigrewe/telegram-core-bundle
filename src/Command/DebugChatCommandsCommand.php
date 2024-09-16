@@ -4,6 +4,7 @@ namespace Jostkleigrewe\TelegramCoreBundle\Command;
 
 use Jostkleigrewe\TelegramCoreBundle\ChatCommand\ChatCommandCollection;
 use Jostkleigrewe\TelegramCoreBundle\Manager\TelegramCoreManager;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,11 +17,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  *
  * @package   Jostkleigrewe\TelegramCoreBundle
  * @author    Sven Jostkleigrewe <sven@jostkleigrewe.com>
- * @copyright 2023 Sven Jostkleigrewe
+ * @copyright 2024 Sven Jostkleigrewe
  */
+#[AsCommand(name: 'telegram:debug:chat-commands')]
 class DebugChatCommandsCommand extends Command
 {
-    protected static $defaultName = 'telegram:debug:chat-commands';
 
     public function __construct(
         private readonly TelegramCoreManager $manager
