@@ -23,14 +23,6 @@ services:
     public: true
     autowire: true
 
-  Jostrkleigrewe\TelegramCoreBundle\Service\TelegramCommandService:
-    public: true
-    autowire: true
-
-  Jostkleigrewe\TelegramCoreBundle\Service\TelegramMessageService:
-    public: true
-    autowire: true
-
   Jostkleigrewe\TelegramCoreBundle\Service\ChatCommandService:
     public: true
     autowire: true
